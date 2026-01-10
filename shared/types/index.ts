@@ -53,4 +53,5 @@ export interface IUserData {
   patronymic?: string | null;
   dateOfBirth?: string | null;
   isCompleteData: boolean;
+  error: boolean;
 }

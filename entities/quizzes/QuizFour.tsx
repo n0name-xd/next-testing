@@ -9,24 +9,6 @@ const QUIZ: IQuiz = {
   step: 1,
   questions: [
     {
-      question: "Ваш пол?",
-      questionId: "1",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Женщина",
-          value: "0",
-          variantId: "1",
-        },
-        {
-          inputType: "checkbox",
-          text: "Мужчина",
-          value: "1",
-          variantId: "2",
-        },
-      ],
-    },
-    {
       question: "Как часто Вы употребляете алкогольные напитки?",
       questionId: "38",
       variants: [

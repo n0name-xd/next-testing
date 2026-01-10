@@ -17,6 +17,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
   });
   const [commonUserData, setCommonUserData] = useState<IUserData>({
     isCompleteData: false,
+    error: false,
   });
 
   const isLastStep = quiz.step >= quiz.questions?.length;
@@ -64,74 +65,95 @@ export const useQuiz = (QUIZ: IQuiz) => {
   const createPdf = useCallback(() => {
     if (!isLastStep) return;
 
-    const questionAndAnswer = result.answers.map((elem) => {
-      const question = quiz.questions.find((e) =>
-        e.variants.find((el) => el.variantId === elem.variantId)
-      );
+    // const extraDictionary = calculateExtraDictionary();
 
-      return `
-        Вопрос: ${question?.question}
-        Ответ: ${elem.inputType === "checkbox" ? elem.text : elem.value}
-      `;
-    });
+    // const table =
+    //   result.answers
+    //     ?.map((elem) => {
+    //       const question = quiz.questions.find((e) =>
+    //         e.variants.find((el) => el.variantId === elem.variantId)
+    //       );
 
-    const extraDictionary = calculateExtraDictionary();
+    //       const value = quiz.dictionary
+    //         ?.find((d) => d?.questionId === question?.questionId)
+    //         ?.variants?.find((v) => v?.variantId === elem?.variantId);
 
-    const table =
-      result.answers
-        ?.map((elem) => {
-          const question = quiz.questions.find((e) =>
-            e.variants.find((el) => el.variantId === elem.variantId)
-          );
+    //       if (value) {
+    //         return [value?.result, value?.extraDescription];
+    //       }
+    //     })
+    //     .filter((e) => !!e) ?? [];
 
-          const value = quiz.dictionary
-            ?.find((d) => d?.questionId === question?.questionId)
-            ?.variants?.find((v) => v?.variantId === elem?.variantId);
-
-          if (value) {
-            return [value?.result, value?.extraDescription];
-          }
-        })
-        .filter((e) => !!e) ?? [];
-
-    const newTable = table.concat(extraDictionary);
-
-    const text = `${questionAndAnswer.join("\n")}`;
+    // const newTable = table.concat(extraDictionary);
 
     const pageWidth = 210;
-    const margin = 10;
-    const maxWidth = pageWidth - 2 * margin;
+    // const margin = 10;
+    // const maxWidth = pageWidth - 2 * margin;
 
     doc.setFontSize(10);
     doc.text("Название теста:", pageWidth / 2, 10, { align: "center" });
     doc.setFontSize(16);
     doc.text(quiz.title, pageWidth / 2, 18, { align: "center" });
 
-    const pageHeight = 297;
+    doc.setFontSize(10);
+    doc.text(`Фамилия: ${commonUserData.surname}`, 2, 28);
+    doc.text(`Имя: ${commonUserData.name}`, 2, 33);
+    doc.text(`Отчество: ${commonUserData.patronymic}`, 2, 38);
+    doc.text(`Дата рождения: ${commonUserData.dateOfBirth}`, 2, 43);
+    doc.text(
+      `Пол: ${commonUserData.gender === "male" ? "мужской" : "женский"}`,
+      2,
+      48
+    );
 
-    const startY = 20;
-    const maxHeight = pageHeight - startY - margin;
+    const answersTable = result.answers.map((elem) => {
+      const question = quiz.questions.find((e) =>
+        e.variants.find((el) => el.variantId === elem.variantId)
+      );
 
-    drawLongText(doc, text, {
-      x: 2,
-      y: startY,
-      maxHeight: maxHeight,
-      lineHeight: 5,
-      fontSize: 12,
-      align: "left",
-      maxWidth: maxWidth,
+      return [
+        question?.question,
+        elem.inputType === "checkbox" ? elem.text : elem.value,
+      ];
     });
 
-    doc.addPage();
-
     autoTable(doc, {
-      head: [["Предварительный результат", "Советы"]],
-      body: newTable as [][],
+      startY: 53,
+      tableWidth: pageWidth - 4,
+      head: [["Вопрос", "Ответ"]],
+      body: answersTable as [][],
       styles: {
         font: "Roboto",
         fontStyle: "normal",
       },
+      margin: { left: 2 },
     });
+
+    // const pageHeight = 297;
+
+    // const startY = 20;
+    // const maxHeight = pageHeight - startY - margin;
+
+    // drawLongText(doc, text, {
+    //   x: 2,
+    //   y: startY,
+    //   maxHeight: maxHeight,
+    //   lineHeight: 5,
+    //   fontSize: 12,
+    //   align: "left",
+    //   maxWidth: maxWidth,
+    // });
+
+    // doc.addPage();
+
+    // autoTable(doc, {
+    //   head: [["Предварительный результат", "Советы"]],
+    //   body: newTable as [][],
+    //   styles: {
+    //     font: "Roboto",
+    //     fontStyle: "normal",
+    //   },
+    // });
 
     doc.save("result.pdf");
   }, [
@@ -141,43 +163,45 @@ export const useQuiz = (QUIZ: IQuiz) => {
     quiz.questions,
     quiz.title,
     result.answers,
+    commonUserData,
   ]);
 
   const applyUserData = useCallback(() => {
-    console.log("commonUserData", commonUserData);
-
     if (
       commonUserData.dateOfBirth &&
       commonUserData.name &&
       commonUserData.patronymic &&
-      commonUserData.surname
+      commonUserData.surname &&
+      commonUserData.gender
     ) {
-      setCommonUserData((p) => ({ ...p, isCompleteData: true }));
+      setCommonUserData((p) => ({ ...p, isCompleteData: true, error: false }));
+    } else {
+      setCommonUserData((p) => ({ ...p, error: true }));
     }
   }, [commonUserData]);
 
   return useMemo(
     () => ({
-      quiz,
+      commonUserData,
       result,
       value,
-      commonUserData,
-      setValue,
+      quiz,
+      setCommonUserData,
+      applyUserData,
       applyData,
       createPdf,
-      applyUserData,
-      setCommonUserData,
+      setValue,
     }),
     [
-      quiz,
+      commonUserData,
       result,
       value,
-      commonUserData,
-      setValue,
+      quiz,
+      setCommonUserData,
+      applyUserData,
       applyData,
       createPdf,
-      applyUserData,
-      setCommonUserData,
+      setValue,
     ]
   );
 };

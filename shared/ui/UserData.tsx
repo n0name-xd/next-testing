@@ -102,12 +102,13 @@ export const UserData: React.FC<IUserDataProps> = ({
         </label>
         <br />
         <input
+          max={new Date().toISOString().split("T")[0]}
           type="date"
-          //   value={commonUserData.surname ?? ""}
-          //   onChange={(el) =>
-          //     setCommonUserData((p) => ({ ...p, surname: el.target.value }))
-          //   }
-          className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none mt-2"
+          value={commonUserData.dateOfBirth ?? ""}
+          onChange={(el) => {
+            setCommonUserData((p) => ({ ...p, dateOfBirth: el.target.value }));
+          }}
+          className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none mt-2 text-xl"
         />
       </div>
       <button
@@ -116,6 +117,13 @@ export const UserData: React.FC<IUserDataProps> = ({
       >
         Подтвердить и перейти к тесту
       </button>
+      <div>
+        {commonUserData.error && (
+          <span className="text-red-500 font-semibold text-2xl underline">
+            Необходимо заполнить все поля
+          </span>
+        )}
+      </div>
     </div>
   );
 };
