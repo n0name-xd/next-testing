@@ -1,12 +1,11 @@
-import { useMemo, useState } from "react";
-import type { IQuiz, IResult, IVariant } from "@/shared/types";
+import { useCallback, useMemo, useState } from "react";
+import type { IQuiz, IResult, IUserData, IVariant } from "@/shared/types";
 import { jsPDF } from "jspdf";
 import { autoTable } from "jspdf-autotable";
-// import Roboto from "./Roboto-Black.ttf";
 import { drawLongText } from "@/shared/hooks/helpers";
 
 const doc = new jsPDF();
-// doc.addFont(Roboto, "Roboto", "normal");
+doc?.addFont("/fonts/Roboto-Black.ttf", "Roboto", "normal");
 doc.setFont("Roboto");
 
 export const useQuiz = (QUIZ: IQuiz) => {
@@ -16,10 +15,13 @@ export const useQuiz = (QUIZ: IQuiz) => {
     isShowResult: false,
     answers: [],
   });
+  const [commonUserData, setCommonUserData] = useState<IUserData>({
+    isCompleteData: false,
+  });
 
   const isLastStep = quiz.step >= quiz.questions?.length;
 
-  const applyData = () => {
+  const applyData = useCallback(() => {
     // if (value?.plusStep && ) {}
 
     if (value) {
@@ -31,9 +33,9 @@ export const useQuiz = (QUIZ: IQuiz) => {
       setQuiz((p) => ({ ...p, step: p.step + 1 + (value?.plusStep ?? 0) }));
       setValue(undefined);
     }
-  };
+  }, [quiz.questions.length, quiz.step, result.answers, value]);
 
-  const calculateExtraDictionary = (): string[][] => {
+  const calculateExtraDictionary = useCallback((): string[][] => {
     const tableData: string[][] = [];
 
     quiz.extraDictionary?.forEach((e) => {
@@ -48,7 +50,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
           sum += +resultValue;
         }
       });
-      console.log("e.questions.condition", e.questions.condition);
+      // console.log("e.questions.condition", e.questions.condition);
       //  console.log("value", value);
       //  Если женщина 3 => то алкета у мужика 4
       if (sum === e.questions.condition) {
@@ -57,9 +59,9 @@ export const useQuiz = (QUIZ: IQuiz) => {
     });
 
     return tableData;
-  };
+  }, [quiz.extraDictionary, result.answers]);
 
-  const createPdf = () => {
+  const createPdf = useCallback(() => {
     if (!isLastStep) return;
 
     const questionAndAnswer = result.answers.map((elem) => {
@@ -132,10 +134,50 @@ export const useQuiz = (QUIZ: IQuiz) => {
     });
 
     doc.save("result.pdf");
-  };
+  }, [
+    calculateExtraDictionary,
+    isLastStep,
+    quiz.dictionary,
+    quiz.questions,
+    quiz.title,
+    result.answers,
+  ]);
+
+  const applyUserData = useCallback(() => {
+    console.log("commonUserData", commonUserData);
+
+    if (
+      commonUserData.dateOfBirth &&
+      commonUserData.name &&
+      commonUserData.patronymic &&
+      commonUserData.surname
+    ) {
+      setCommonUserData((p) => ({ ...p, isCompleteData: true }));
+    }
+  }, [commonUserData]);
 
   return useMemo(
-    () => ({ quiz, result, value, setValue, applyData, createPdf }),
-    [quiz, result, value, setValue, applyData, createPdf]
+    () => ({
+      quiz,
+      result,
+      value,
+      commonUserData,
+      setValue,
+      applyData,
+      createPdf,
+      applyUserData,
+      setCommonUserData,
+    }),
+    [
+      quiz,
+      result,
+      value,
+      commonUserData,
+      setValue,
+      applyData,
+      createPdf,
+      applyUserData,
+      setCommonUserData,
+    ]
   );
 };

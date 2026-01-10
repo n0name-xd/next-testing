@@ -2,25 +2,43 @@ import { ApplyButton } from "@/shared/ui/ApplyButton";
 import { Answers } from "@/shared/ui/Answers";
 import { QuizResult } from "@/shared/ui/QuizResult";
 import { Question } from "@/shared/ui/Question";
-import type { IQuiz, IResult, IVariant } from "@/shared/types";
+import type { IQuiz, IResult, IUserData, IVariant } from "@/shared/types";
+import { UserData } from "./UserData";
+import { Dispatch, SetStateAction } from "react";
 
 interface IQuizProps {
-  quiz: IQuiz;
+  commonUserData: IUserData;
   result: IResult;
   value: IVariant | undefined;
+  quiz: IQuiz;
   setChecked: React.Dispatch<React.SetStateAction<IVariant | undefined>>;
   applyData: () => void;
   createPdf: () => void;
+  applyUserData: () => void;
+  setCommonUserData: Dispatch<SetStateAction<IUserData>>;
 }
 
 export const Quiz: React.FC<IQuizProps> = ({
-  quiz,
+  commonUserData,
   result,
   value,
+  quiz,
   setChecked,
   applyData,
   createPdf,
+  applyUserData,
+  setCommonUserData,
 }) => {
+  if (!commonUserData.isCompleteData) {
+    return (
+      <UserData
+        commonUserData={commonUserData}
+        applyUserData={applyUserData}
+        setCommonUserData={setCommonUserData}
+      />
+    );
+  }
+
   return (
     <div className="mt-6">
       <h1 className="text-3xl font-semibold">{quiz.title}</h1>

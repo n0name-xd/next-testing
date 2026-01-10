@@ -1258,13 +1258,26 @@ const QUIZ: IQuiz = {
 };
 
 export const QuizOne = () => {
-  const { quiz, result, value, setValue, applyData, createPdf } = useQuiz(QUIZ);
+  const {
+    quiz,
+    result,
+    value,
+    commonUserData,
+    applyUserData,
+    setCommonUserData,
+    setValue,
+    applyData,
+    createPdf,
+  } = useQuiz(QUIZ);
 
   return (
     <Quiz
       createPdf={createPdf}
       setChecked={setValue}
       applyData={applyData}
+      commonUserData={commonUserData}
+      applyUserData={applyUserData}
+      setCommonUserData={setCommonUserData}
       value={value}
       result={result}
       quiz={quiz}

@@ -45,3 +45,12 @@ export interface IResult {
   isShowResult: boolean;
   answers: IVariant[];
 }
+
+export interface IUserData {
+  gender?: "male" | "female";
+  name?: string | null;
+  surname?: string | null;
+  patronymic?: string | null;
+  dateOfBirth?: string | null;
+  isCompleteData: boolean;
+}
