@@ -28,3 +28,15 @@ export function drawLongText(doc: jsPDF, text: string, options: IJsPDFOptions) {
     currentY += lineHeight;
   }
 }
+
+export const splitStringBy67 = (str: string): string[] => {
+  const result = [];
+  for (let i = 0; i < str.length; i += 67) {
+    result.push(str.slice(i, i + 67));
+  }
+  return result;
+};
+
+export const removeDuplicates = <T>(arr: Array<T>): Array<T> => {
+  return [...new Set(arr)];
+};

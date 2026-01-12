@@ -44,7 +44,7 @@ export const Answers: React.FC<IAnswersProps> = ({
               <input
                 type="text"
                 name={e.text}
-                value={value?.value}
+                value={value?.value ?? ""}
                 onChange={(el) => setChecked({ ...e, value: el.target.value })}
                 className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none"
               />

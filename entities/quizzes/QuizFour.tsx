@@ -9,6 +9,18 @@ const QUIZ: IQuiz = {
   step: 1,
   questions: [
     {
+      question: "input",
+      questionId: "1",
+      variants: [
+        {
+          inputType: "text",
+          text: "Text",
+          value: "",
+          variantId: "22",
+        },
+      ],
+    },
+    {
       question: "Как часто Вы употребляете алкогольные напитки?",
       questionId: "38",
       variants: [
@@ -148,12 +160,32 @@ const QUIZ: IQuiz = {
   ],
   dictionary: [
     {
-      questionId: "1",
+      questionId: "38",
       variants: [
         {
-          variantId: "1",
+          variantId: "73",
           result: "Результат 1",
           extraDescription: "extraDescription 1",
+        },
+        {
+          variantId: "74",
+          result: "Результат 2",
+          extraDescription: "• Консультация врача-нарколога",
+        },
+        {
+          variantId: "75",
+          result: "Результат 3",
+          extraDescription: "• Консультация врача-нарколога",
+        },
+        {
+          variantId: "76",
+          result: "Результат 4",
+          extraDescription: "• Консультация врача-нарколога",
+        },
+        {
+          variantId: "77",
+          result: "Результат 5",
+          extraDescription: "• Консультация врача-нарколога",
         },
       ],
     },
