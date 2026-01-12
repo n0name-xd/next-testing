@@ -23,15 +23,16 @@ export const useQuiz = (QUIZ: IQuiz) => {
   const isLastStep = quiz.step >= quiz.questions?.length;
 
   const applyData = useCallback(() => {
-    // if (value?.plusStep && ) {}
-
     if (value) {
       setResult({
         answers: [...result.answers, value],
         isShowResult: quiz.step === quiz.questions.length,
       });
 
-      setQuiz((p) => ({ ...p, step: p.step + 1 + (value?.plusStep ?? 0) }));
+      const isLastElem = quiz.step === quiz.questions.length - 1;
+      const plusStep = isLastElem ? 0 : value?.plusStep ?? 0;
+
+      setQuiz((p) => ({ ...p, step: p.step + 1 + plusStep }));
       setValue(undefined);
     }
   }, [quiz.questions.length, quiz.step, result.answers, value]);
@@ -52,14 +53,23 @@ export const useQuiz = (QUIZ: IQuiz) => {
         }
       });
 
-      //  Если женщина 3 => то алкета у мужика 4
+      if (
+        (e.questions.result === "риск пагубного потребления алкоголя" &&
+          commonUserData.gender === "female" &&
+          sum > 3) ||
+        (commonUserData.gender === "male" && sum > 4)
+      ) {
+        tableData.push(e.questions.extraDescription);
+        return;
+      }
+
       if (sum === e.questions.condition) {
         tableData.push(e.questions.extraDescription);
       }
     });
 
     return tableData;
-  }, [quiz.extraDictionary, result.answers]);
+  }, [quiz.extraDictionary, result.answers, commonUserData.gender]);
 
   const createPdf = useCallback(() => {
     if (!isLastStep) return;

@@ -9,18 +9,6 @@ const QUIZ: IQuiz = {
   step: 1,
   questions: [
     {
-      question: "input",
-      questionId: "1",
-      variants: [
-        {
-          inputType: "text",
-          text: "Text",
-          value: "",
-          variantId: "22",
-        },
-      ],
-    },
-    {
       question: "Как часто Вы употребляете алкогольные напитки?",
       questionId: "38",
       variants: [
