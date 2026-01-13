@@ -1,7 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { routesList } from "../routes";
 
 export const Main = () => {
+  const fn = async () => {
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+    });
+
+    const data = await res.json();
+    console.log("data", data);
+  };
   return (
     <div>
       <h1 className="mt-8 text-3xl font-semibold">Тесты:</h1>
@@ -16,6 +26,12 @@ export const Main = () => {
           );
         })}
       </ul>
+      <button
+        onClick={fn}
+        className="cursor-pointer bg-amber-200 rounded-2xl py-2 px-4 mt-6"
+      >
+        222
+      </button>
     </div>
   );
 };

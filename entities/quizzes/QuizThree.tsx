@@ -51,7 +51,7 @@ const QUIZ: IQuiz = {
         variantsIds: ["1", "3"],
         condition: 2,
         result: "result !!!!",
-        extraDescription: "extraDescription !!!!",
+        extraDescription: ["extraDescription !!!!"],
       },
     },
   ],

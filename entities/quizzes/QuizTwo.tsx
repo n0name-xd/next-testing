@@ -323,6 +323,32 @@ const QUIZ: IQuiz = {
       ],
     },
   ],
+  extraDictionary: [
+    {
+      questions: {
+        variantsIds: ["1"],
+        condition: 1,
+        extraDescription: ["Сахар", "Соль", "Перец"],
+        result: "",
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["3"],
+        condition: 1,
+        extraDescription: ["Сахар", "Соль", "Перец", "Огурец"],
+        result: "",
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["5"],
+        condition: 1,
+        extraDescription: ["Огурец"],
+        result: "",
+      },
+    },
+  ],
 };
 
 export const QuizTwo = () => {

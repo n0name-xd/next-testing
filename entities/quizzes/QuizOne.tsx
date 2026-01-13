@@ -831,7 +831,7 @@ const QUIZ: IQuiz = {
         variantsIds: ["52", "56"],
         condition: 2,
         result: "!!!!!!",
-        extraDescription: "@@@@@@@@@@@@@@@@@@@@@@@@@@",
+        extraDescription: ["@@@@@@@@@@@@@@@@@@@@@@@@@@"],
       },
     },
   ],

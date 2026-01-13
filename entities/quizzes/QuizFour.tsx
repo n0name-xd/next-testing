@@ -142,7 +142,7 @@ const QUIZ: IQuiz = {
         ],
         condition: 4,
         result: "риск пагубного потребления алкоголя",
-        extraDescription: "• Консультация врача-нарколога",
+        extraDescription: ["• Консультация врача-нарколога"],
       },
     },
   ],

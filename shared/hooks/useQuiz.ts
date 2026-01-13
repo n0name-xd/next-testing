@@ -59,14 +59,15 @@ export const useQuiz = (QUIZ: IQuiz) => {
           sum > 3) ||
         (commonUserData.gender === "male" && sum > 4)
       ) {
-        tableData.push(e.questions.extraDescription);
+        e.questions.extraDescription.forEach((el) => tableData.push(el));
         return;
       }
 
       if (sum === e.questions.condition) {
-        tableData.push(e.questions.extraDescription);
+        e.questions.extraDescription.forEach((el) => tableData.push(el));
       }
     });
+    console.log("tableData", tableData);
 
     return tableData;
   }, [quiz.extraDictionary, result.answers, commonUserData.gender]);
@@ -209,6 +210,8 @@ export const useQuiz = (QUIZ: IQuiz) => {
       location.reload();
     };
   }, []);
+
+  // https://tproger.ru/articles/kak-otpravlyat-email-iz-koda--nodemailer--smtp-i-html-pisma
 
   return useMemo(
     () => ({

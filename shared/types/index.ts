@@ -11,7 +11,7 @@ export interface IExtraDictionary {
     variantsIds: string[];
     condition: number;
     result: string;
-    extraDescription: string;
+    extraDescription: string[];
   };
 }
 
