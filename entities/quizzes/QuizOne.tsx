@@ -9,492 +9,492 @@ const QUIZ: IQuiz = {
     "Анкета для граждан в возрасте до 65 лет на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача",
   step: 1,
   questions: [
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется гипертоническая болезнь (повышенное артериальное давление)?",
-      questionId: "1",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "1",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "2",
-          plusStep: 1,
-        },
-      ],
-    },
-    {
-      question: "Принимаете ли Вы препараты для снижения давления?",
-      questionId: "2",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "3",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "4",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется ишемическая болезнь сердца (стенокардия)?",
-      questionId: "3",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "5",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "6",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется цереброваскулярное заболевание (заболевание сосудов головного мозга)?",
-      questionId: "4",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "7",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "8",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется хроническое заболевание бронхов или легких (хронический бронхит, эмфизема, бронхиальная астма)?",
-      questionId: "5",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "9",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "10",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется туберкулез (легких или иных локализаций)?",
-      questionId: "6",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "11",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "12",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется сахарный диабет или повышенный уровень сахара в крови?",
-      questionId: "7",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "13",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "14",
-          plusStep: 1,
-        },
-      ],
-    },
-    {
-      question: "Принимаете ли Вы препараты для снижения уровня сахара?",
-      questionId: "8",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "15",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "16",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется заболевания желудка (гастрит, язвенная болезнь)?",
-      questionId: "9",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "17",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "18",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется хроническое заболевание почек?",
-      questionId: "10",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "19",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "20",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется Злокачественное новообразование?",
-      questionId: "11",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "21",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "22",
-          plusStep: 1,
-        },
-      ],
-    },
-    {
-      question: "Какое?",
-      questionId: "12",
-      variants: [
-        {
-          inputType: "text",
-          text: "",
-          value: "1",
-          variantId: "23",
-        },
-      ],
-    },
-    {
-      question:
-        "Говорил ли Вам врач когда-либо, что у Вас имеется повышенный уровень холестерина?",
-      questionId: "13",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "24",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "25",
-          plusStep: 1,
-        },
-      ],
-    },
-    {
-      question: "Принимаете ли Вы препараты для снижения уровня холестерина?",
-      questionId: "14",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "26",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "27",
-        },
-      ],
-    },
-    {
-      question: "Был ли у Вас инфаркт миокарда?",
-      questionId: "15",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "28",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "29",
-        },
-      ],
-    },
-    {
-      question: "Был ли у Вас инсульт?",
-      questionId: "16",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "30",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "31",
-        },
-      ],
-    },
-    {
-      question:
-        "Был ли инфаркт миокарда или инсульт у Ваших близких родственников в молодом или среднем возрасте (до 65 лет у матери или родных сестер или до 55 лет у отца или родных братьев)?",
-      questionId: "17",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "32",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "33",
-        },
-      ],
-    },
-    {
-      question:
-        "Были ли у Ваших близких родственников в молодом или среднем возрасте злокачественные новообразования (легкого, желудка, кишечника, толстой или прямой кишки, предстательной железы, молочной железы, матки, опухоли других локализаций) или полипоз желудка, семейный аденоматоз / диффузный полипоз толстой кишки? (нужное подчеркнуть)",
-      questionId: "18",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "34",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "35",
-        },
-      ],
-    },
-    {
-      question:
-        "Возникает ли у Вас, когда поднимаетесь по лестнице, идете в гору или спешите, или при выходе из теплого помещения на холодный воздух, боль или ощущение давления, жжения, тяжести или явного дискомфорта за грудиной и (или) в левой половине грудной клетки, и (или) в левом плече, и (или) в левой руке?",
-      questionId: "19",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "36",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "37",
-          plusStep: 1,
-        },
-      ],
-    },
-    {
-      question:
-        "Указанные боли ощущения/дискомфорт исчезают сразу или в течение не более чем 20 мин после прекращения ходьбы/адаптации к холоду/ в тепле/в покое и (или) они исчезают через 1−5 мин после приема нитроглицерина",
-      questionId: "20",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "38",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "39",
-        },
-      ],
-    },
-    {
-      question:
-        "Возникала ли у Вас когда-либо внезапная кратковременная слабость или неловкость при движении в одной руке (ноге) либо руке и ноге одновременно так, что Вы не могли взять или удержать предмет, встать со стула, пройтись по комнате?",
-      questionId: "21",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "40",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "41",
-        },
-      ],
-    },
-    {
-      question:
-        "Возникало ли у Вас когда-либо внезапное без явных причин кратковременное онемение в одной руке, ноге или половине лица, губы или языка?",
-      questionId: "22",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "42",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "43",
-        },
-      ],
-    },
-    {
-      question:
-        "Возникала ли у Вас когда-либо внезапно кратковременная потеря зрения на один глаз?",
-      questionId: "23",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "44",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "45",
-        },
-      ],
-    },
-    {
-      question:
-        "Бывают ли у Вас ежегодно периоды ежедневного кашля с отделением мокроты на протяжении примерно 3 месяцев в году?",
-      questionId: "24",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "46",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "47",
-        },
-      ],
-    },
-    {
-      question:
-        "Бывают ли у Вас свистящие или жужжащие хрипы в грудной клетке при дыхании, не проходящие при откашливании?",
-      questionId: "25",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "48",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "49",
-        },
-      ],
-    },
-    {
-      question: "Бывало ли у Вас когда-либо кровохарканье?",
-      questionId: "26",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "50",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "51",
-        },
-      ],
-    },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется гипертоническая болезнь (повышенное артериальное давление)?",
+    //   questionId: "1",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "1",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "2",
+    //       plusStep: 1,
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Принимаете ли Вы препараты для снижения давления?",
+    //   questionId: "2",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "3",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "4",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется ишемическая болезнь сердца (стенокардия)?",
+    //   questionId: "3",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "5",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "6",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется цереброваскулярное заболевание (заболевание сосудов головного мозга)?",
+    //   questionId: "4",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "7",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "8",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется хроническое заболевание бронхов или легких (хронический бронхит, эмфизема, бронхиальная астма)?",
+    //   questionId: "5",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "9",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "10",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется туберкулез (легких или иных локализаций)?",
+    //   questionId: "6",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "11",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "12",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется сахарный диабет или повышенный уровень сахара в крови?",
+    //   questionId: "7",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "13",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "14",
+    //       plusStep: 1,
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Принимаете ли Вы препараты для снижения уровня сахара?",
+    //   questionId: "8",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "15",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "16",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется заболевания желудка (гастрит, язвенная болезнь)?",
+    //   questionId: "9",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "17",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "18",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется хроническое заболевание почек?",
+    //   questionId: "10",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "19",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "20",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется Злокачественное новообразование?",
+    //   questionId: "11",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "21",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "22",
+    //       plusStep: 1,
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Какое злокачественное новообразование?",
+    //   questionId: "12",
+    //   variants: [
+    //     {
+    //       inputType: "text",
+    //       text: "",
+    //       value: "1",
+    //       variantId: "23",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Говорил ли Вам врач когда-либо, что у Вас имеется повышенный уровень холестерина?",
+    //   questionId: "13",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "24",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "25",
+    //       plusStep: 1,
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Принимаете ли Вы препараты для снижения уровня холестерина?",
+    //   questionId: "14",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "26",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "27",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Был ли у Вас инфаркт миокарда?",
+    //   questionId: "15",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "28",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "29",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Был ли у Вас инсульт?",
+    //   questionId: "16",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "30",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "31",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Был ли инфаркт миокарда или инсульт у Ваших близких родственников в молодом или среднем возрасте (до 65 лет у матери или родных сестер или до 55 лет у отца или родных братьев)?",
+    //   questionId: "17",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "32",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "33",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Были ли у Ваших близких родственников в молодом или среднем возрасте злокачественные новообразования (легкого, желудка, кишечника, толстой или прямой кишки, предстательной железы, молочной железы, матки, опухоли других локализаций) или полипоз желудка, семейный аденоматоз / диффузный полипоз толстой кишки? (нужное подчеркнуть)",
+    //   questionId: "18",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "34",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "35",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Возникает ли у Вас, когда поднимаетесь по лестнице, идете в гору или спешите, или при выходе из теплого помещения на холодный воздух, боль или ощущение давления, жжения, тяжести или явного дискомфорта за грудиной и (или) в левой половине грудной клетки, и (или) в левом плече, и (или) в левой руке?",
+    //   questionId: "19",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "36",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "37",
+    //       plusStep: 1,
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Указанные боли ощущения/дискомфорт исчезают сразу или в течение не более чем 20 мин после прекращения ходьбы/адаптации к холоду/ в тепле/в покое и (или) они исчезают через 1−5 мин после приема нитроглицерина",
+    //   questionId: "20",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "38",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "39",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Возникала ли у Вас когда-либо внезапная кратковременная слабость или неловкость при движении в одной руке (ноге) либо руке и ноге одновременно так, что Вы не могли взять или удержать предмет, встать со стула, пройтись по комнате?",
+    //   questionId: "21",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "40",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "41",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Возникало ли у Вас когда-либо внезапное без явных причин кратковременное онемение в одной руке, ноге или половине лица, губы или языка?",
+    //   questionId: "22",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "42",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "43",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Возникала ли у Вас когда-либо внезапно кратковременная потеря зрения на один глаз?",
+    //   questionId: "23",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "44",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "45",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Бывают ли у Вас ежегодно периоды ежедневного кашля с отделением мокроты на протяжении примерно 3 месяцев в году?",
+    //   questionId: "24",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "46",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "47",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Бывают ли у Вас свистящие или жужжащие хрипы в грудной клетке при дыхании, не проходящие при откашливании?",
+    //   questionId: "25",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "48",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "49",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Бывало ли у Вас когда-либо кровохарканье?",
+    //   questionId: "26",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "50",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "51",
+    //     },
+    //   ],
+    // },
     {
       question:
         "Беспокоят ли Вас боли в области верхней части живота (в области желудка), отрыжка, тошнота, рвота, ухудшение или отсутствие аппетита? ",
@@ -570,269 +570,571 @@ const QUIZ: IQuiz = {
         },
       ],
     },
-    {
-      question: "Бывают ли у Вас кровяные выделения с калом?",
-      questionId: "31",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "60",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "61",
-        },
-      ],
-    },
-    {
-      question: "Курите ли Вы? (курение одной и более сигарет в день)",
-      questionId: "32",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "62",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "63",
-          plusStep: 1,
-        },
-      ],
-    },
-    {
-      question: "Cколько в среднем сигарет в день выкуриваете?",
-      questionId: "33",
-      variants: [
-        {
-          inputType: "text",
-          text: "",
-          value: "1",
-          variantId: "64",
-        },
-      ],
-    },
-    {
-      question:
-        "Сколько минут в день Вы тратите на ходьбу в умеренном или быстром темпе (включая дорогу до места работы и обратно)?",
-      questionId: "34",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "До 30 минут",
-          value: "1",
-          variantId: "65",
-        },
-        {
-          inputType: "checkbox",
-          text: "30 минут и более",
-          value: "0",
-          variantId: "66",
-        },
-      ],
-    },
-    {
-      question:
-        "Присутствует ли в Вашем ежедневном рационе 400−500 г сырых овощей и фруктов?",
-      questionId: "35",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "0",
-          variantId: "67",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "1",
-          variantId: "68",
-        },
-      ],
-    },
-    {
-      question:
-        "Имеете ли Вы привычку подсаливать приготовленную пищу, не пробуя ее?",
-      questionId: "36",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "69",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "70",
-        },
-      ],
-    },
-    {
-      question:
-        "Принимали ли Вы за последний год психотропные или наркотические вещества без назначения врача?",
-      questionId: "37",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "71",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "72",
-        },
-      ],
-    },
-    {
-      question: "Как часто Вы употребляете алкогольные напитки?",
-      questionId: "38",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Никогда",
-          value: "0",
-          variantId: "73",
-        },
-        {
-          inputType: "checkbox",
-          text: "Раз в месяц и реже",
-          value: "1",
-          variantId: "74",
-        },
-        {
-          inputType: "checkbox",
-          text: "2−4 раза в месяц",
-          value: "2",
-          variantId: "75",
-        },
-        {
-          inputType: "checkbox",
-          text: "2−3 раза в неделю",
-          value: "3",
-          variantId: "76",
-        },
-        {
-          inputType: "checkbox",
-          text: "4 раза и больше в неделю",
-          value: "4",
-          variantId: "77",
-        },
-      ],
-    },
-    {
-      question:
-        "Какое количество алкогольных напитков (порций) Вы выпиваете обычно за один раз? 1 порция равна 12 мл чистого этанола ИЛИ 30 мл крепкого алкоголя (водки), ИЛИ 100 мл сухого вина, ИЛИ 300 мл пива",
-      questionId: "39",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "1−2 порции ",
-          value: "0",
-          variantId: "78",
-        },
-        {
-          inputType: "checkbox",
-          text: "3−4 порции",
-          value: "1",
-          variantId: "79",
-        },
-        {
-          inputType: "checkbox",
-          text: "5−6 порций",
-          value: "2",
-          variantId: "80",
-        },
-        {
-          inputType: "checkbox",
-          text: "7−9 порций",
-          value: "3",
-          variantId: "81",
-        },
-        {
-          inputType: "checkbox",
-          text: "10 порций и больше",
-          value: "4",
-          variantId: "82",
-        },
-      ],
-    },
-    {
-      question:
-        "Как часто Вы употребляете за один раз 6 или более порций? 6 порций равны ИЛИ 180 мл крепкого алкоголя (водки), ИЛИ 600 мл сухого вина, ИЛИ 1,8 л пива",
-      questionId: "40",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Никогда",
-          value: "0",
-          variantId: "83",
-        },
-        {
-          inputType: "checkbox",
-          text: "Раз в месяц и реже",
-          value: "1",
-          variantId: "84",
-        },
-        {
-          inputType: "checkbox",
-          text: "2−4 раза в месяц",
-          value: "2",
-          variantId: "85",
-        },
-        {
-          inputType: "checkbox",
-          text: "2−3 раза в неделю",
-          value: "3",
-          variantId: "86",
-        },
-        {
-          inputType: "checkbox",
-          text: "4 раза и больше в неделю",
-          value: "4",
-          variantId: "87",
-        },
-      ],
-    },
-    {
-      question:
-        "Есть ли у Вас другие жалобы на свое здоровье, не вошедшие в настоящую анкету и которые Вы бы хотели сообщить врачу (фельдшеру)?",
-      questionId: "41",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "88",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "89",
-        },
-      ],
-    },
+    // {
+    //   question: "Бывают ли у Вас кровяные выделения с калом?",
+    //   questionId: "31",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "60",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "61",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Курите ли Вы? (курение одной и более сигарет в день)",
+    //   questionId: "32",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "62",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "63",
+    //       plusStep: 1,
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Cколько в среднем сигарет в день выкуриваете?",
+    //   questionId: "33",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "20 сигарет и более",
+    //       value: "1",
+    //       variantId: "64",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Менее 20",
+    //       value: "0",
+    //       variantId: "165",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Сколько минут в день Вы тратите на ходьбу в умеренном или быстром темпе (включая дорогу до места работы и обратно)?",
+    //   questionId: "34",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "До 30 минут",
+    //       value: "1",
+    //       variantId: "65",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "30 минут и более",
+    //       value: "0",
+    //       variantId: "66",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Присутствует ли в Вашем ежедневном рационе 400−500 г сырых овощей и фруктов?",
+    //   questionId: "35",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "1",
+    //       variantId: "67",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "0",
+    //       variantId: "68",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Имеете ли Вы привычку подсаливать приготовленную пищу, не пробуя ее?",
+    //   questionId: "36",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "69",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "70",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Принимали ли Вы за последний год психотропные или наркотические вещества без назначения врача?",
+    //   questionId: "37",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "71",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "72",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question: "Как часто Вы употребляете алкогольные напитки?",
+    //   questionId: "38",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Никогда",
+    //       value: "0",
+    //       variantId: "73",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Раз в месяц и реже",
+    //       value: "1",
+    //       variantId: "74",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "2−4 раза в месяц",
+    //       value: "2",
+    //       variantId: "75",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "2−3 раза в неделю",
+    //       value: "3",
+    //       variantId: "76",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "4 раза и больше в неделю",
+    //       value: "4",
+    //       variantId: "77",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Какое количество алкогольных напитков (порций) Вы выпиваете обычно за один раз? 1 порция равна 12 мл чистого этанола ИЛИ 30 мл крепкого алкоголя (водки), ИЛИ 100 мл сухого вина, ИЛИ 300 мл пива",
+    //   questionId: "39",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "1−2 порции ",
+    //       value: "0",
+    //       variantId: "78",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "3−4 порции",
+    //       value: "1",
+    //       variantId: "79",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "5−6 порций",
+    //       value: "2",
+    //       variantId: "80",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "7−9 порций",
+    //       value: "3",
+    //       variantId: "81",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "10 порций и больше",
+    //       value: "4",
+    //       variantId: "82",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Как часто Вы употребляете за один раз 6 или более порций? 6 порций равны ИЛИ 180 мл крепкого алкоголя (водки), ИЛИ 600 мл сухого вина, ИЛИ 1,8 л пива",
+    //   questionId: "40",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Никогда",
+    //       value: "0",
+    //       variantId: "83",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Раз в месяц и реже",
+    //       value: "1",
+    //       variantId: "84",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "2−4 раза в месяц",
+    //       value: "2",
+    //       variantId: "85",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "2−3 раза в неделю",
+    //       value: "3",
+    //       variantId: "86",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "4 раза и больше в неделю",
+    //       value: "4",
+    //       variantId: "87",
+    //     },
+    //   ],
+    // },
+    // {
+    //   question:
+    //     "Есть ли у Вас другие жалобы на свое здоровье, не вошедшие в настоящую анкету и которые Вы бы хотели сообщить врачу (фельдшеру)?",
+    //   questionId: "41",
+    //   variants: [
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Да",
+    //       value: "1",
+    //       variantId: "88",
+    //     },
+    //     {
+    //       inputType: "checkbox",
+    //       text: "Нет",
+    //       value: "0",
+    //       variantId: "89",
+    //     },
+    //   ],
+    // },
   ],
   extraDictionary: [
     {
       questions: {
-        variantsIds: ["52", "56"],
-        condition: 2,
-        result: "!!!!!!",
-        extraDescription: ["@@@@@@@@@@@@@@@@@@@@@@@@@@"],
+        variantsIds: ["1"],
+        condition: 1,
+        result: "!",
+        extraDescription: [
+          "Креатинин",
+          "Скорость клубочковой фильтрации (СКФ)",
+          "Холестерин-липопротеины низкой плотности (ХС-ЛПНП)",
+          "Альбуминурия в разовой порции мочи",
+          "Электрокардиограмма (ЭКГ)",
+          "Эхокардиограмма (ЭХО-КГ)",
+        ],
       },
+    },
+    {
+      questions: {
+        variantsIds: ["3"],
+        condition: 1,
+        result: "!",
+        extraDescription: ["Принимает гипотензивные препараты"],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["5"],
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Креатинин",
+          "Скорость клубочковой фильтрации (СКФ)",
+          "Холестерин-липопротеины низкой плотности (ХС-ЛПНП)",
+          "Электрокардиограмма (ЭКГ)",
+          "Эхокардиограмма (ЭХО-КГ)",
+          "Пациентам при терапии варфарином – международное нормализованное отношение (МНО)",
+          "Общий анализ крови (ОАК)",
+          "Уровень N-концевого пропептида натрийуретического гормона (В-типа) (NT-proBNP)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["7"],
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "УЗИ сонных артерий; допплеровское исследование сонных артерий",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["9"], //Хроническое заболевание бронхов или легких Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Сатурация кислорода в крови (SpO2)",
+          "Функция внешнего дыхания (ФВД)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["11"], //Туберкулез Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: ["Рентген легких", "Врач-фтизиатр"],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["13"], //Сахарный диабет или повышенный уровень сахара в крови
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Глюкоза плазмы натощак",
+          "Гликозилированный гемоглобин (HbA1c)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["15"],
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: ["Принимает препараты для снижения уровня сахара"],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["17"], //Заболевания желудка Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: ["Эзофагогастродуоденоскопия (ЭГДС)"],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["19"], //Хроническое заболевание почек Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Скорость клубочковой фильтрации (СКФ)",
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Врач-нефролог",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["21"], //Злокачественное новообразование Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: ["Врач-онколог"],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["24"], //Повышенный уровень холестерина Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Скорость клубочковой фильтрации (СКФ)",
+          "Триглицериды (ТГ)",
+          "УЗИ брахиоцефальных артерий",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["26"], // Принимает препараты для снижения уровня холестерина Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "УЗИ сонных артерий; допплеровское исследование сонных артерий",
+          "Трансаминазы (АЛАТ, АСАТ)",
+          "Креатинкиназа общая и МВ (КФКобщ, КФКмб)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["28"], // Инфаркт Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Электрокардиограмма (ЭКГ)",
+          "Триглицериды (ТГ)",
+          "УЗИ брахиоцефальных артерий",
+          "Холестерин- липопротеины высокой плотности (ХС-ЛПВП)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["30"], // Инсульт Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Электрокардиограмма (ЭКГ)",
+          "Глюкоза плазмы натощак",
+          "Трансаминазы (АЛАТ, АСАТ)",
+          "Креатинкиназа общая и МВ (КФКобщ, КФКмб)",
+          "Врач-невролог",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["32"], //инфаркт миокарда или инсульт у Ваших близких родственников в молодом или среднем возрасте Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Триглицериды (ТГ)",
+          "Холестерин- липопротеины высокой плотности (ХС-ЛПВП)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["34"], //Злокачественные новообразования у близких родственников в молодом или среднем возрасте  Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Врач-хирург или врач-колопроктолог",
+          "Врач-кардиолог",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["36"], // вероятность стенокардии Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Креатинин",
+          "Скорость клубочковой фильтрации (СКФ)",
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Электрокардиограмма (ЭКГ)",
+          "Эхокардиограмма (ЭХО-КГ)",
+          "Пациентам при терапии варфарином – международное нормализованное отношение (МНО)",
+          "Общий анализ крови (ОАК)",
+          "Уровень N-концевого пропептида натрийуретического гормона (В-типа) (NT-proBNP)",
+          "Врач-кардиолог",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["40"], // вероятность преходящей ишемической атаки (ТИА) или перенесенного ОНМК Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Электрокардиограмма (ЭКГ)",
+          "Триглицериды (ТГ)",
+          "УЗИ брахиоцефальных артерий",
+          "Холестерин- липопротеины высокой плотности (ХС-ЛПВП)",
+          "Врач-невролог",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["42"], // вероятность преходящей ишемической атаки (ТИА) или перенесенного ОНМК Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Электрокардиограмма (ЭКГ)",
+          "Триглицериды (ТГ)",
+          "УЗИ брахиоцефальных артерий",
+          "Холестерин- липопротеины высокой плотности (ХС-ЛПВП)",
+          "Врач-невролог",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["44"], // вероятность преходящей ишемической атаки (ТИА) или перенесенного ОНМК Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Холестерин- липопротеины низкой плотности (ХС-ЛПНП)",
+          "Электрокардиограмма (ЭКГ)",
+          "Триглицериды (ТГ)",
+          "УЗИ брахиоцефальных артерий",
+          "Холестерин- липопротеины высокой плотности (ХС-ЛПВП)",
+          "Врач-невролог",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["46"], // периоды ежедневного кашля с отделением мокроты Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Спирометрия",
+          "Сатурация кислорода в крови (SpO2)",
+          "Функция внешнего дыхания (ФВД)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["48"], // свистящие или жужжащие хрипы в грудной клетке при дыхании Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Спирометрия",
+          "Сатурация кислорода в крови (SpO2)",
+          "Функция внешнего дыхания (ФВД)",
+        ],
+      },
+    },
+    {
+      questions: {
+        variantsIds: ["50"], // Кровохаркание Да
+        condition: 1,
+        result: "!!!!!!",
+        extraDescription: [
+          "Рентгенография и/или компьютерная томография легких",
+        ],
+      },
+    },
+  ],
+  conditions: [
+    (arr) => {
+      if (arr.includes("52") && arr.includes("54")) {
+        return "Пупсик";
+      }
+
+      if (arr.includes("52")) {
+        return "Пупсик 2";
+      }
+
+      return "";
     },
   ],
   dictionary: [
@@ -1127,9 +1429,10 @@ const QUIZ: IQuiz = {
       variants: [
         {
           variantId: "52",
-          result:
-            "«Да» если через один «Да», то вероятность заболеваний верхних отделов желудочно-кишечного тракта(если ответ НЕТ или здесь да, а через один НЕТ, то ничего не появляется)",
+          result: "",
           extraDescription: "• эзофагогастродуоденоскопии (ЭГДС)",
+          condition: 1,
+          valuesArr: [],
         },
       ],
     },

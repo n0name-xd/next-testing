@@ -152,30 +152,61 @@ const QUIZ: IQuiz = {
       variants: [
         {
           variantId: "73",
-          result: "Результат 1",
+          result: "",
           extraDescription: "extraDescription 1",
         },
         {
           variantId: "74",
-          result: "Результат 2",
+          result: "",
           extraDescription: "• Консультация врача-нарколога",
         },
         {
           variantId: "75",
-          result: "Результат 3",
+          result: "",
           extraDescription: "• Консультация врача-нарколога",
         },
         {
           variantId: "76",
-          result: "Результат 4",
+          result: "",
           extraDescription: "• Консультация врача-нарколога",
         },
         {
           variantId: "77",
-          result: "Результат 5",
+          result: "",
           extraDescription: "• Консультация врача-нарколога",
         },
       ],
+    },
+  ],
+  conditions: [
+    (arr, userData) => {
+      const points = new Map();
+      const questions = ["38", "39", "40"];
+
+      QUIZ.questions.forEach((q) => {
+        if (questions.includes(q.questionId)) {
+          q.variants.forEach((v) => {
+            points.set(v.variantId, v.value);
+          });
+        }
+      });
+
+      let sum = 0;
+
+      Array.from(points)?.forEach((e) => {
+        if (arr.includes(e[0])) {
+          sum += +e[1];
+        }
+      });
+
+      if (
+        (userData?.gender === "female" && sum >= 3) ||
+        (userData?.gender === "male" && sum >= 4)
+      ) {
+        return "Пагубное влияние алкоголя";
+      }
+
+      return "";
     },
   ],
 };

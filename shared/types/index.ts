@@ -4,6 +4,7 @@ export interface IQuiz {
   questions: IQuestion[];
   dictionary: Array<IDictionaryElem>;
   extraDictionary?: Array<IExtraDictionary>;
+  conditions?: Array<(arr: string[], userData?: IUserData) => string>;
 }
 
 export interface IExtraDictionary {
@@ -24,6 +25,8 @@ interface IDictionaryVariant {
   variantId: string;
   result: string;
   extraDescription: string;
+  condition?: number;
+  valuesArr?: string[];
 }
 
 interface IQuestion {

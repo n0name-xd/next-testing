@@ -26,12 +26,12 @@ export const Main = () => {
           );
         })}
       </ul>
-      <button
+      {/* <button
         onClick={fn}
         className="cursor-pointer bg-amber-200 rounded-2xl py-2 px-4 mt-6"
       >
         222
-      </button>
+      </button> */}
     </div>
   );
 };

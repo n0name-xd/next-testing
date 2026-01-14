@@ -53,24 +53,13 @@ export const useQuiz = (QUIZ: IQuiz) => {
         }
       });
 
-      if (
-        (e.questions.result === "риск пагубного потребления алкоголя" &&
-          commonUserData.gender === "female" &&
-          sum > 3) ||
-        (commonUserData.gender === "male" && sum > 4)
-      ) {
-        e.questions.extraDescription.forEach((el) => tableData.push(el));
-        return;
-      }
-
       if (sum === e.questions.condition) {
         e.questions.extraDescription.forEach((el) => tableData.push(el));
       }
     });
-    console.log("tableData", tableData);
 
     return tableData;
-  }, [quiz.extraDictionary, result.answers, commonUserData.gender]);
+  }, [quiz.extraDictionary, result.answers]);
 
   const createPdf = useCallback(() => {
     if (!isLastStep) return;
@@ -93,6 +82,11 @@ export const useQuiz = (QUIZ: IQuiz) => {
           }
         })
         .filter((e) => !!e) ?? [];
+
+    const answersIds = result.answers.map((a) => a.variantId);
+    quiz.conditions?.forEach((q) => {
+      surveyResults.push(q(answersIds, commonUserData));
+    });
 
     const pageWidth = 210;
 
@@ -184,11 +178,9 @@ export const useQuiz = (QUIZ: IQuiz) => {
   }, [
     calculateExtraDictionary,
     isLastStep,
-    quiz.dictionary,
-    quiz.questions,
-    quiz.title,
     result.answers,
     commonUserData,
+    quiz,
   ]);
 
   const applyUserData = useCallback(() => {

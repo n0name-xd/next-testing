@@ -2,9 +2,10 @@ import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   const transporter = nodemailer.createTransport({
-    host: "smtp.yandex.ru",
-    port: 465,
-    secure: false, // использовать SSL
+    // host: "smtp.yandex",
+    // port: 465,
+    // secure: true,
+    service: "yandex",
     auth: {
       user: process.env.EMAIL_FROM,
       pass: process.env.EMAIL_PASSWORD,
@@ -12,10 +13,11 @@ export async function POST(request: Request) {
   });
 
   const mailOptions = {
-    from: "Петропко",
+    from: '"Петропко"',
     to: process.env.EMAIL_TO,
     subject: "Тестовое письмо",
     text: "Привет! Это простое текстовое письмо.",
+    html: "Привет!Это HTML-письмо с форматированием.",
   };
 
   try {
