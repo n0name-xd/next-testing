@@ -57,4 +57,5 @@ export interface IUserData {
   dateOfBirth?: string | null;
   isCompleteData: boolean;
   error: boolean;
+  isConfirmPolitico: boolean;
 }

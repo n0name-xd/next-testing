@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { IUserData } from "../types";
+import Link from "next/link";
 
 interface IUserDataProps {
   commonUserData: IUserData;
@@ -110,6 +111,25 @@ export const UserData: React.FC<IUserDataProps> = ({
           }}
           className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none mt-2 text-xl"
         />
+      </div>
+      <div className="mt-4 flex items-center gap-4">
+        <input
+          type="checkbox"
+          className="w-5 h-5"
+          checked={commonUserData.isConfirmPolitico}
+          onChange={(e) =>
+            setCommonUserData((p) => ({
+              ...p,
+              isConfirmPolitico: e.target.checked,
+            }))
+          }
+        />
+        Продолжая, вы подтверждаете согласие на{" "}
+        <Link href={"/politico"} className="text-blue-600">
+          {" "}
+          обработку персональных данных
+        </Link>
+        .
       </div>
       <button
         onClick={applyUserData}

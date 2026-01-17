@@ -18,6 +18,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
   const [commonUserData, setCommonUserData] = useState<IUserData>({
     isCompleteData: false,
     error: false,
+    isConfirmPolitico: false,
   });
 
   const isLastStep = quiz.step >= quiz.questions?.length;
@@ -192,15 +193,14 @@ export const useQuiz = (QUIZ: IQuiz) => {
       commonUserData.name &&
       commonUserData.patronymic &&
       commonUserData.surname &&
-      commonUserData.gender
+      commonUserData.gender &&
+      commonUserData.isConfirmPolitico
     ) {
       setCommonUserData((p) => ({ ...p, isCompleteData: true, error: false }));
     } else {
       setCommonUserData((p) => ({ ...p, error: true }));
     }
   }, [commonUserData]);
-
-  // https://tproger.ru/articles/kak-otpravlyat-email-iz-koda--nodemailer--smtp-i-html-pisma
 
   return useMemo(
     () => ({
