@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client";
 
 export const Header = () => {
   return (
@@ -6,9 +6,9 @@ export const Header = () => {
       <div className="wrapper">
         <nav>
           <div className="flex gap-4 font-semibold text-2xl pt-2">
-            <Link href={"/"}>
+            <button onClick={() => (location.href = "/")}>
               <span className="nav_menu">{"Главная"}</span>
-            </Link>
+            </button>
           </div>
         </nav>
       </div>

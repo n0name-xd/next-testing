@@ -144,7 +144,10 @@ export const useQuiz = (QUIZ: IQuiz) => {
     if (surveyResults.length) {
       doc.addPage();
 
-      const tableData = removeDuplicates(surveyResults).map((e) => [e, ""]);
+      const tableData = removeDuplicates(surveyResults)
+        .map((e) => [e, ""])
+        .filter((e) => !!e[0]);
+
       autoTable(doc, {
         startY: 2,
         tableWidth: pageWidth - 4,
@@ -196,12 +199,6 @@ export const useQuiz = (QUIZ: IQuiz) => {
       setCommonUserData((p) => ({ ...p, error: true }));
     }
   }, [commonUserData]);
-
-  useEffect(() => {
-    return () => {
-      location.reload();
-    };
-  }, []);
 
   // https://tproger.ru/articles/kak-otpravlyat-email-iz-koda--nodemailer--smtp-i-html-pisma
 

@@ -5,7 +5,9 @@ export async function POST(request: Request) {
     // host: "smtp.yandex",
     // port: 465,
     // secure: true,
-    service: "yandex",
+    host: "smtp.yandex.ru",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_FROM,
       pass: process.env.EMAIL_PASSWORD,
