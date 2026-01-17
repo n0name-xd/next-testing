@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, useTransition } from "react";
 import type { IQuiz, IResult, IUserData, IVariant } from "@/shared/types";
 import { jsPDF } from "jspdf";
 import { autoTable } from "jspdf-autotable";
@@ -20,6 +20,8 @@ export const useQuiz = (QUIZ: IQuiz) => {
     error: false,
     isConfirmPolitico: false,
   });
+  const [isPending, startTransition] = useTransition();
+  const [successText, setSuccessText] = useState<string>("");
 
   const isLastStep = quiz.step >= quiz.questions?.length;
 
@@ -62,7 +64,33 @@ export const useQuiz = (QUIZ: IQuiz) => {
     return tableData;
   }, [quiz.extraDictionary, result.answers]);
 
-  const createPdf = useCallback(() => {
+  const sendEmail = async (doc: jsPDF) => {
+    startTransition(async () => {
+      const pdfBase64 = doc.output("datauristring").split(",")[1];
+
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          pdf: pdfBase64,
+          fileName: "document.pdf",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.text === "Письмо отправлено") {
+        setSuccessText("Письмо отправлено регистратору");
+      } else {
+        setSuccessText("Произошла ошибка, попробуйте через некоторое время");
+      }
+      console.log("data", data);
+    });
+  };
+
+  const createPdf = useCallback(async () => {
     if (!isLastStep) return;
 
     const extraDictionary = calculateExtraDictionary();
@@ -179,6 +207,8 @@ export const useQuiz = (QUIZ: IQuiz) => {
     }
 
     doc.save("result.pdf");
+
+    await sendEmail(doc);
   }, [
     calculateExtraDictionary,
     isLastStep,
@@ -208,6 +238,8 @@ export const useQuiz = (QUIZ: IQuiz) => {
       result,
       value,
       quiz,
+      isLoading: isPending,
+      successText,
       setCommonUserData,
       applyUserData,
       applyData,
@@ -215,7 +247,9 @@ export const useQuiz = (QUIZ: IQuiz) => {
       setValue,
     }),
     [
+      isPending,
       commonUserData,
+      successText,
       result,
       value,
       quiz,

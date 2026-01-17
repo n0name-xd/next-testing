@@ -8,6 +8,7 @@ import { Dispatch, SetStateAction } from "react";
 
 interface IQuizProps {
   commonUserData: IUserData;
+  isLoading: boolean;
   result: IResult;
   value: IVariant | undefined;
   quiz: IQuiz;
@@ -16,13 +17,16 @@ interface IQuizProps {
   createPdf: () => void;
   applyUserData: () => void;
   setCommonUserData: Dispatch<SetStateAction<IUserData>>;
+  successText: string;
 }
 
 export const Quiz: React.FC<IQuizProps> = ({
   commonUserData,
+  isLoading,
   result,
   value,
   quiz,
+  successText,
   setChecked,
   applyData,
   createPdf,
@@ -43,7 +47,11 @@ export const Quiz: React.FC<IQuizProps> = ({
     <div className="mt-6">
       <h1 className="text-3xl font-semibold">{quiz.title}</h1>
       {result.isShowResult ? (
-        <QuizResult createPdf={createPdf} />
+        <QuizResult
+          createPdf={createPdf}
+          isLoading={isLoading}
+          successText={successText}
+        />
       ) : (
         <>
           <Question quiz={quiz} />
@@ -52,7 +60,7 @@ export const Quiz: React.FC<IQuizProps> = ({
             value={value}
             setChecked={setChecked}
           />
-          <ApplyButton apply={applyData} text="Принять" />
+          <ApplyButton apply={applyData} text="Принять" isLoading={isLoading} />
         </>
       )}
     </div>
