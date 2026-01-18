@@ -2,9 +2,6 @@ import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   const transporter = nodemailer.createTransport({
-    // host: "smtp.yandex",
-    // port: 465,
-    // secure: true,
     host: "smtp.yandex.ru",
     port: 465,
     secure: true,
@@ -14,15 +11,28 @@ export async function POST(request: Request) {
     },
   });
 
-  const mailOptions = {
-    from: '"Петропко"',
-    to: process.env.EMAIL_TO,
-    subject: "Тестовое письмо",
-    text: "Привет! Это простое текстовое письмо.",
-    html: "Привет!Это HTML-письмо с форматированием.",
-  };
-
   try {
+    const { pdf, fileName } = await request.json();
+
+    if (!pdf) {
+      return Response.json({ text: "Файл не получен" }, { status: 400 });
+    }
+
+    const mailOptions = {
+      from: `"Городищенская ЦРБ" <${process.env.EMAIL_FROM}>`,
+      to: process.env.EMAIL_TO,
+      subject: "Диспансеризация граждан",
+      text: "Опросный лист с результатами тестирования.",
+      html: "Опросный лист.",
+      attachments: [
+        {
+          filename: fileName || "document.pdf",
+          content: pdf,
+          encoding: "base64",
+        },
+      ],
+    };
+
     const info = await transporter.sendMail(mailOptions);
 
     console.log("Письмо отправлено:", info.messageId);
