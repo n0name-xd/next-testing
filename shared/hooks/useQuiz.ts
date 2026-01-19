@@ -33,7 +33,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
       });
 
       const isLastElem = quiz.step === quiz.questions.length - 1;
-      const plusStep = isLastElem ? 0 : value?.plusStep ?? 0;
+      const plusStep = isLastElem ? 0 : (value?.plusStep ?? 0);
 
       setQuiz((p) => ({ ...p, step: p.step + 1 + plusStep }));
       setValue(undefined);
@@ -48,7 +48,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
 
       e.questions.variantsIds?.forEach((variantId) => {
         const resultValue = result.answers.find(
-          (a) => a.variantId === variantId
+          (a) => a.variantId === variantId,
         )?.value;
 
         if (resultValue) {
@@ -65,29 +65,47 @@ export const useQuiz = (QUIZ: IQuiz) => {
   }, [quiz.extraDictionary, result.answers]);
 
   const sendEmail = async (doc: jsPDF) => {
-    startTransition(async () => {
-      const pdfBase64 = doc.output("datauristring").split(",")[1];
+    const pdfBase64 = doc.output("datauristring").split(",")[1];
 
-      const res = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          pdf: pdfBase64,
-          fileName: "document.pdf",
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.text === "Письмо отправлено") {
-        setSuccessText("Письмо отправлено регистратору");
-      } else {
-        setSuccessText("Произошла ошибка, попробуйте через некоторое время");
-      }
-      console.log("data", data);
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pdf: pdfBase64,
+        fileName: "document.pdf",
+      }),
     });
+
+    const data = await res.json();
+
+    if (data.text === "Письмо отправлено") {
+      setSuccessText("Письмо отправлено регистратору");
+    } else {
+      setSuccessText("Произошла ошибка, попробуйте через некоторое время");
+    }
+    console.log("data", data);
+  };
+
+  const setDataToBd = async (
+    userData: IUserData,
+    answers: (string | undefined)[][],
+    surveyResults: (string | undefined)[],
+    extraDictionary: string[],
+  ) => {
+    const res = await fetch("/api/data", {
+      method: "POST",
+      body: JSON.stringify({
+        userData,
+        answers,
+        surveyResults,
+        extraDictionary,
+      }),
+    });
+
+    const data = await res.json();
+    console.log("data", data);
   };
 
   const createPdf = useCallback(async () => {
@@ -99,7 +117,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
       result.answers
         ?.map((elem) => {
           const question = quiz.questions.find((e) =>
-            e.variants.find((el) => el.variantId === elem.variantId)
+            e.variants.find((el) => el.variantId === elem.variantId),
           );
 
           const value = quiz.dictionary
@@ -144,12 +162,12 @@ export const useQuiz = (QUIZ: IQuiz) => {
     doc.text(
       `Пол: ${commonUserData.gender === "male" ? "мужской" : "женский"}`,
       2,
-      startY + 48
+      startY + 48,
     );
 
     const answersTable = result.answers.map((elem) => {
       const question = quiz.questions.find((e) =>
-        e.variants.find((el) => el.variantId === elem.variantId)
+        e.variants.find((el) => el.variantId === elem.variantId),
       );
 
       return [
@@ -206,9 +224,17 @@ export const useQuiz = (QUIZ: IQuiz) => {
       });
     }
 
-    doc.save("result.pdf");
+    startTransition(async () => {
+      doc.save("result.pdf");
 
-    await sendEmail(doc);
+      // await sendEmail(doc);
+      await setDataToBd(
+        commonUserData,
+        answersTable,
+        surveyResults,
+        extraDictionary,
+      );
+    });
   }, [
     calculateExtraDictionary,
     isLastStep,
@@ -235,11 +261,11 @@ export const useQuiz = (QUIZ: IQuiz) => {
   return useMemo(
     () => ({
       commonUserData,
+      successText,
+      isLoading: isPending,
       result,
       value,
       quiz,
-      isLoading: isPending,
-      successText,
       setCommonUserData,
       applyUserData,
       applyData,
@@ -247,9 +273,9 @@ export const useQuiz = (QUIZ: IQuiz) => {
       setValue,
     }),
     [
-      isPending,
       commonUserData,
       successText,
+      isPending,
       result,
       value,
       quiz,
@@ -258,6 +284,6 @@ export const useQuiz = (QUIZ: IQuiz) => {
       applyData,
       createPdf,
       setValue,
-    ]
+    ],
   );
 };

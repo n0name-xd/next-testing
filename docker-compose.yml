@@ -10,7 +10,9 @@ services:
     env_file:
       - .env
     environment:
-      # Эти переменные будут подтянуты из вашего .env файла
       - EMAIL=${EMAIL}
       - EMAIL_PASSWORD=${EMAIL_PASSWORD}
       - EMAIL_TO=${EMAIL_TO}
+      - SECRET=${SECRET}
+    volumes:
+      - ./entities/bd:/app/entities/bd
