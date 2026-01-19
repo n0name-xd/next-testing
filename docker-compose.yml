@@ -4,15 +4,38 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: nextjs_16_app
-    ports:
-      - "3000:3000"
+    # Порты не пробрасываем наружу, они будут доступны только внутри сети docker для прокси
+    expose:
+      - "3000"
     restart: always
     env_file:
       - .env
     environment:
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
       - EMAIL=${EMAIL}
       - EMAIL_PASSWORD=${EMAIL_PASSWORD}
       - EMAIL_TO=${EMAIL_TO}
       - SECRET=${SECRET}
     volumes:
       - ./entities/bd:/app/entities/bd
+    networks:
+      - app-network
+
+  nginx-proxy:
+    image: "jc21/nginx-proxy-manager:latest"
+    container_name: nginx-proxy-manager
+    restart: always
+    ports:
+      - "80:80" # Публичный HTTP
+      - "443:443" # Публичный HTTPS
+      - "81:81" # Админка управления (потом можно закрыть)
+    volumes:
+      - ./nginx_data:/data
+      - ./nginx_letsencrypt:/etc/letsencrypt
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
