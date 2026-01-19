@@ -227,7 +227,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
     startTransition(async () => {
       doc.save("result.pdf");
 
-      // await sendEmail(doc);
+      await sendEmail(doc);
       await setDataToBd(
         commonUserData,
         answersTable,
