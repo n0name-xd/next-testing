@@ -20,8 +20,8 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Создаем папку для базы данных и даем права пользователю
-RUN mkdir -p /app/entities/bd && chown -y nextjs:nodejs /app/entities/bd
+# Исправленная строка:
+RUN mkdir -p /app/entities/bd && chown -R nextjs:nodejs /app/entities/bd
 
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
