@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   });
 
   try {
-    const { pdf, fileName } = await request.json();
+    const { pdf, fileName, surname } = await request.json();
 
     if (!pdf) {
       return Response.json({ text: "Файл не получен" }, { status: 400 });
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     const mailOptions = {
       from: `"Городищенская ЦРБ" <${process.env.EMAIL_FROM}>`,
       to: process.env.EMAIL_TO,
-      subject: "Диспансеризация граждан",
+      subject: surname,
       text: "Опросный лист с результатами тестирования.",
       html: "Опросный лист.",
       attachments: [

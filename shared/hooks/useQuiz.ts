@@ -64,7 +64,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
     return tableData;
   }, [quiz.extraDictionary, result.answers]);
 
-  const sendEmail = async (doc: jsPDF) => {
+  const sendEmail = async (doc: jsPDF, surname: string) => {
     const pdfBase64 = doc.output("datauristring").split(",")[1];
 
     const res = await fetch("/api/send-email", {
@@ -75,6 +75,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
       body: JSON.stringify({
         pdf: pdfBase64,
         fileName: "document.pdf",
+        surname,
       }),
     });
 
@@ -224,10 +225,21 @@ export const useQuiz = (QUIZ: IQuiz) => {
       });
     }
 
+    doc.addPage();
+    doc.setFontSize(10);
+    doc.text(`Согласие на обработку персональных данных`, 60, startY + 2);
+    doc.text(`ГБУЗ «Городищенская ЦРБ»`, 70, startY + 6);
+    doc.setFontSize(8);
+    doc.text(
+      `Я, нижеподписавшийся ${commonUserData.surname} ${commonUserData.name} ${commonUserData.patronymic}`,
+      2,
+      startY + 10,
+    );
+
     startTransition(async () => {
       doc.save("result.pdf");
 
-      await sendEmail(doc);
+      await sendEmail(doc, commonUserData?.surname ?? "");
       await setDataToBd(
         commonUserData,
         answersTable,
