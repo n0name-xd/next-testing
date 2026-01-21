@@ -849,14 +849,6 @@ const QUIZ: IQuiz = {
     },
     {
       questions: {
-        variantsIds: ["3"],
-        condition: 1,
-        result: "!",
-        extraDescription: ["Принимает гипотензивные препараты"],
-      },
-    },
-    {
-      questions: {
         variantsIds: ["5"],
         condition: 1,
         result: "!!!!!!",

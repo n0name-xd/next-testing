@@ -3,7 +3,7 @@ import "./globals.css";
 import { Header } from "@/shared/ui/Header";
 
 export const metadata: Metadata = {
-  title: "Тестирование",
+  title: `ГБУЗ "Городищенская ЦРБ"`,
   description: "",
 };
 

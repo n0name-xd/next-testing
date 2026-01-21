@@ -15,7 +15,12 @@ export const QuizResult: React.FC<IQuizResultProps> = ({
     <div>
       <div className="mt-4 text-4xl font-semibold">Тест завершен</div>
 
-      <ApplyButton apply={createPdf} text="Создать pdf" isLoading={isLoading} />
+      <ApplyButton
+        apply={createPdf}
+        text="Создать pdf"
+        isLoading={isLoading}
+        disabled={isLoading || successText === "Письмо отправлено регистратору"}
+      />
       <div>{successText}</div>
     </div>
   );

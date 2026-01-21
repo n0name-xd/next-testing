@@ -5,6 +5,7 @@ export interface IQuiz {
   dictionary: Array<IDictionaryElem>;
   extraDictionary?: Array<IExtraDictionary>;
   conditions?: Array<(arr: string[], userData?: IUserData) => string>;
+  conditionsResult?: Array<(arr: string[], userData?: IUserData) => string>;
 }
 
 export interface IExtraDictionary {
