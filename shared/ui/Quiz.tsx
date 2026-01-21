@@ -60,7 +60,12 @@ export const Quiz: React.FC<IQuizProps> = ({
             value={value}
             setChecked={setChecked}
           />
-          <ApplyButton apply={applyData} text="Принять" isLoading={isLoading} />
+          <ApplyButton
+            apply={applyData}
+            text="Принять"
+            isLoading={isLoading}
+            disabled={isLoading}
+          />
         </>
       )}
     </div>
