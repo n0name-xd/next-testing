@@ -19,6 +19,7 @@ db.exec(`
     patronymic TEXT NOT NULL,
     gender TEXT NOT NULL,
     dateOfBirth TEXT NOT NULL,
+    test TEXT NOT NULL,
     answers TEXT NOT NULL,
     surveyResults TEXT NOT NULL,
     extraDictionary TEXT NOT NULL

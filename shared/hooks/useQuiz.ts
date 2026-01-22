@@ -44,7 +44,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
   const calculateExtraDictionary = useCallback((): string[] => {
     const tableData: string[] = [];
 
-    quiz.extraDictionary?.forEach((e) => {
+    quiz?.extraDictionary?.forEach((e) => {
       let sum = 0;
 
       e.questions.variantsIds?.forEach((variantId) => {
@@ -95,6 +95,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
     answers: (string | undefined)[][],
     surveyResults: (string | undefined)[],
     extraDictionary: string[],
+    quiz: IQuiz,
   ) => {
     const res = await fetch("/api/data", {
       method: "POST",
@@ -103,6 +104,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
         answers,
         surveyResults,
         extraDictionary,
+        test: quiz.title,
       }),
     });
 
@@ -156,7 +158,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
     const extraDictionary = calculateExtraDictionary();
     const answersIds = result.answers.map((a) => a.variantId);
 
-    quiz.conditionsResult?.forEach((e) => {
+    quiz?.conditionsResult?.forEach((e) => {
       extraDictionary.push(e(answersIds, commonUserData));
     });
 
@@ -177,7 +179,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
         })
         .filter((e) => !!e) ?? [];
 
-    quiz.conditions?.forEach((q) => {
+    quiz?.conditions?.forEach((q) => {
       surveyResults.push(q(answersIds, commonUserData));
     });
 
@@ -282,6 +284,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
         answersTable,
         surveyResults,
         extraDictionary,
+        quiz,
       );
     });
   }, [

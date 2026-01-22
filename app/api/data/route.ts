@@ -3,11 +3,11 @@ import db from "@/shared/libs/bd";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { userData, answers, surveyResults, extraDictionary } = body;
+    const { userData, answers, surveyResults, extraDictionary, test } = body;
 
     const stmt = db.prepare(`
-        INSERT INTO userData (surname, name, patronymic, gender, dateOfBirth, answers, surveyResults, extraDictionary)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO userData (surname, name, patronymic, gender, dateOfBirth, answers, surveyResults, extraDictionary, test)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
     const info = stmt.run(
@@ -19,6 +19,7 @@ export async function POST(request: Request) {
       JSON.stringify(answers ?? {}),
       JSON.stringify(surveyResults ?? {}),
       JSON.stringify(extraDictionary ?? {}),
+      test,
     );
 
     return Response.json({ text: info });
