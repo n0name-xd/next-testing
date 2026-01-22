@@ -4,7 +4,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: nextjs_16_app
-    # Порты не пробрасываем наружу, они будут доступны только внутри сети docker для прокси
     expose:
       - "3000"
     restart: always
@@ -17,6 +16,7 @@ services:
       - EMAIL_PASSWORD=${EMAIL_PASSWORD}
       - EMAIL_TO=${EMAIL_TO}
       - SECRET=${SECRET}
+      - DATABASE_PATH=${DATABASE_PATH}
     volumes:
       - ./entities/bd:/app/entities/bd
     networks:

@@ -42,6 +42,6 @@ next-env.d.ts
 
 .env
 /entities/bd/database.db
-/nginx_data
+/nginx_data/*
 /nginx_letsencrypt
 /certification

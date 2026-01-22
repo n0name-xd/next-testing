@@ -1,12 +1,15 @@
 import Database from "better-sqlite3";
 import path from "path";
+import fs from "fs";
 
-export const dbPath = path.resolve(
-  process.cwd(),
-  "entities",
-  "bd",
-  "database.db",
-);
+export const dbPath =
+  process.env.DATABASE_PATH ||
+  path.resolve(process.cwd(), "entities/bd/database.db");
+
+const dbDir = path.dirname(dbPath);
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
 
 const db = new Database(dbPath);
 

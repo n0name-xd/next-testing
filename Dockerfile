@@ -10,8 +10,6 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN mkdir -p /app/entities/bd
-
 RUN npm run build
 
 FROM node:22-alpine AS runner
@@ -22,7 +20,6 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Исправленная строка:
 RUN mkdir -p /app/entities/bd && chown -R nextjs:nodejs /app/entities/bd
 
 COPY --from=builder /app/public ./public
