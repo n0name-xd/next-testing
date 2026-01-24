@@ -5,7 +5,7 @@ import type { IQuiz } from "@/shared/types";
 import { Quiz } from "@/shared/ui/Quiz";
 
 const QUIZ: IQuiz = {
-  title: "Старше 65 лет",
+  title: "Анкета для граждан в возрасте старше 65 лет на выявление хронических неинфекционных заболеваний.",
   step: 1,
   questions: [
     {
