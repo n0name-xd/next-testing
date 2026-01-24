@@ -45,3 +45,5 @@ next-env.d.ts
 /nginx_data/*
 /nginx_letsencrypt
 /certification
+/scripts/*.sqlite
+database_export.xlsx
