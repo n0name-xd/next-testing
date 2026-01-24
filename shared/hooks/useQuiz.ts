@@ -242,8 +242,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
 
       await sendEmail(
         doc,
-        commonUserData?.firstLetterName ??
-          "" + commonUserData.lastNumbersOfPhone,
+        `${commonUserData?.firstLetterName}${commonUserData.lastNumbersOfPhone}`
       );
       setIsSHowTableResult(true);
       await setDataToBd(
