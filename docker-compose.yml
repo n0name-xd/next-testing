@@ -18,7 +18,7 @@ services:
       - SECRET=${SECRET}
       - DATABASE_PATH=${DATABASE_PATH}
     volumes:
-      - ./entities/bd:/app/entities/bd1
+      - ./entities/bd:/app/entities/bd
     networks:
       - app-network
 

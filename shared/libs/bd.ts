@@ -4,7 +4,7 @@ import fs from "fs";
 
 export const dbPath =
   process.env.DATABASE_PATH ||
-  path.resolve(process.cwd(), "entities/bd1/database.db");
+  path.resolve(process.cwd(), "entities/bd/database.db");
 
 const dbDir = path.dirname(dbPath);
 if (!fs.existsSync(dbDir)) {
