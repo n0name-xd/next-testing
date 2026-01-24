@@ -1428,7 +1428,6 @@ const QUIZ: IQuiz = {
     },
     (arr) => {
       const sumArr = ["56", "58", "60", "62", "64", "66", "68"];
-      console.log();
       let sum = 0;
 
       arr.forEach((e) => {
@@ -1464,6 +1463,8 @@ export const QuizThree = () => {
     commonUserData,
     isLoading,
     successText,
+    isSHowTableResult,
+    tableResult,
     setValue,
     applyData,
     createPdf,
@@ -1484,6 +1485,8 @@ export const QuizThree = () => {
       quiz={quiz}
       isLoading={isLoading}
       successText={successText}
+        isSHowTableResult={isSHowTableResult}
+      tableResult={tableResult}
     />
   );
 };

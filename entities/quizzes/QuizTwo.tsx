@@ -63,6 +63,8 @@ export const QuizTwo = () => {
     result,
     value,
     commonUserData,
+    isSHowTableResult,
+    tableResult,
     isLoading,
     successText,
     applyUserData,
@@ -85,6 +87,8 @@ export const QuizTwo = () => {
       quiz={quiz}
       successText={successText}
       isLoading={isLoading}
+      isSHowTableResult={isSHowTableResult}
+      tableResult={tableResult}
     />
   );
 };

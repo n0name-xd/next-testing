@@ -3,7 +3,6 @@ import type { IQuiz, IResult, IUserData, IVariant } from "@/shared/types";
 import { jsPDF } from "jspdf";
 import { autoTable } from "jspdf-autotable";
 import { splitStringBy67, removeDuplicates } from "@/shared/hooks/helpers";
-import dayjs from "dayjs";
 
 const doc = new jsPDF();
 doc?.addFont("/fonts/Roboto-Black.ttf", "Roboto", "normal");
@@ -17,12 +16,14 @@ export const useQuiz = (QUIZ: IQuiz) => {
     answers: [],
   });
   const [commonUserData, setCommonUserData] = useState<IUserData>({
+    firstLetterName: "",
     isCompleteData: false,
     error: false,
-    isConfirmPolitico: false,
   });
   const [isPending, startTransition] = useTransition();
   const [successText, setSuccessText] = useState<string>("");
+  const [isSHowTableResult, setIsSHowTableResult] = useState<boolean>(false);
+  const [tableResult, setTableResult] = useState<(string | undefined)[]>([]);
 
   const isLastStep = quiz.step >= quiz.questions?.length;
 
@@ -112,46 +113,6 @@ export const useQuiz = (QUIZ: IQuiz) => {
     console.log("data", data);
   };
 
-  const createPolitico = useCallback(() => {
-    doc.addPage();
-    doc.setFontSize(10);
-    doc.text(`Согласие на обработку персональных данных`, 60, 4);
-    doc.text(`ГБУЗ «Городищенская ЦРБ»`, 70, 8);
-    doc.setFontSize(8);
-    doc.text(
-      `Я, нижеподписавшийся ${commonUserData.surname} ${commonUserData.name} ${commonUserData.patronymic} ${dayjs(commonUserData.dateOfBirth, "YYYY-MM-DD").format("DD-MM-YYYY")}`,
-      2,
-      12,
-    );
-    doc.text(`Проживающий (ая) по адресу (месту регистрации):`, 2, 16);
-    doc.text(
-      `  В соответствии с требованиями ст.9 ФЗ №142-ФЗ от 27.07.2006 года «О персональных данных» подтверждаю свое согласие на обработку ГБУЗ
-«Городищенская ЦРБ», 403003, р. п. Городище, пл. Павших Борцов д.4 (далее – Оператор) моих персональных данных, включающих: фамилию, 
-имя, отчество, дату рождения, пол, адрес регистрации и места жительства, контактные телефоны, паспортные данные, СНИЛС в 
-пенсионном фонде России, данные страхового полиса ОМС (ДМС), социальное положение, место работы и занимаемая должность, 
-данные о состоянии моего здоровья (диагноз заболевания, шифр заболевания по МКБ-10, перечень и стоимость оказанных услуг,
-данные об инвалидности, диспансерное наблюдение, медицинские льготы), рост, вес, протоколы и результаты инструментальных 
-и лабораторных методов исследования, случаи обращения за медицинской помощью в медико-профилактических целях, в целях 
-установления медицинского диагноза и оказания медицинских услуг при условии, что их ОБРАБОТКА ОСУЩЕСТВЛЯЕТСЯ ЛИЦОМ, 
-ПРОФЕССИОНАЛЬНО ЗАНИМАЮЩИМСЯ МЕДИЦИНСКОЙ ДЕЯТЕЛЬНОСТЬЮ И ОБЯЗАННЫМ СОХРАНЯТЬ ВРАЧЕБНУЮ ТАЙНУ.`,
-      2,
-      20,
-    );
-    doc.text(
-      `В процессе оказания разрешаю Оператору право осуществлять все действия (операции) с моими персональными данными, включая сбор, 
-систематизацию,накопление, хранение, обновление, изменение, обезличивание, блокирование, уничтожение. Оператор в паве обрабатывать 
-мои персональные данные посредством внесения их в электронную базу данных, включение в списки (реестры) и отчетные формы, 
-предусмотренные документами, регламентирующими предоставление отчетных данных (документов) по ОМС, предоставления информации 
-в Пенсионный фонд и налоговый орган и другими регламентирующими работу учреждения здравоохранения руководящими документами.`,
-      2,
-      54,
-    );
-  }, [commonUserData]);
-
-  const createConsentToIntervention = () => {
-    // информированное согласие
-  };
-
   const createPdf = useCallback(async () => {
     if (!isLastStep) return;
 
@@ -203,14 +164,16 @@ export const useQuiz = (QUIZ: IQuiz) => {
     }
 
     doc.setFontSize(10);
-    doc.text(`Фамилия: ${commonUserData.surname}`, 2, startY + 28);
-    doc.text(`Имя: ${commonUserData.name}`, 2, startY + 33);
-    doc.text(`Отчество: ${commonUserData.patronymic}`, 2, startY + 38);
-    doc.text(`Дата рождения: ${commonUserData.dateOfBirth}`, 2, startY + 43);
+    doc.text(
+      `Идентификатор: ${commonUserData?.firstLetterName ?? ""}${commonUserData.lastNumbersOfPhone?.toString()}`,
+      2,
+      startY + 28,
+    );
+
     doc.text(
       `Пол: ${commonUserData.gender === "male" ? "мужской" : "женский"}`,
       2,
-      startY + 48,
+      startY + 34,
     );
 
     const answersTable = result.answers.map((elem) => {
@@ -225,7 +188,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
     });
 
     autoTable(doc, {
-      startY: startY + 53,
+      startY: startY + 43,
       tableWidth: pageWidth - 4,
       head: [["Вопросы", "Ответы"]],
       body: answersTable as [][],
@@ -242,6 +205,8 @@ export const useQuiz = (QUIZ: IQuiz) => {
       const tableData = removeDuplicates(surveyResults)
         .map((e) => [e, ""])
         .filter((e) => !!e[0]);
+
+      setTableResult(surveyResults)
 
       autoTable(doc, {
         startY: 2,
@@ -272,13 +237,15 @@ export const useQuiz = (QUIZ: IQuiz) => {
       });
     }
 
-    createPolitico();
-    createConsentToIntervention();
-
     startTransition(async () => {
       doc.save("result.pdf");
 
-      await sendEmail(doc, commonUserData?.surname ?? "");
+      await sendEmail(
+        doc,
+        commonUserData?.firstLetterName ??
+          "" + commonUserData.lastNumbersOfPhone,
+      );
+      setIsSHowTableResult(true);
       await setDataToBd(
         commonUserData,
         answersTable,
@@ -293,17 +260,14 @@ export const useQuiz = (QUIZ: IQuiz) => {
     result.answers,
     quiz,
     calculateExtraDictionary,
-    createPolitico,
   ]);
 
   const applyUserData = useCallback(() => {
     if (
-      commonUserData.dateOfBirth &&
-      commonUserData.name &&
-      commonUserData.patronymic &&
-      commonUserData.surname &&
-      commonUserData.gender &&
-      commonUserData.isConfirmPolitico
+      commonUserData.firstLetterName &&
+      commonUserData.lastNumbersOfPhone &&
+      commonUserData.lastNumbersOfPhone.length === 4 &&
+      commonUserData.gender
     ) {
       setCommonUserData((p) => ({ ...p, isCompleteData: true, error: false }));
     } else {
@@ -313,7 +277,9 @@ export const useQuiz = (QUIZ: IQuiz) => {
 
   return useMemo(
     () => ({
+      isSHowTableResult,
       commonUserData,
+      tableResult,
       successText,
       isLoading: isPending,
       result,
@@ -326,7 +292,9 @@ export const useQuiz = (QUIZ: IQuiz) => {
       setValue,
     }),
     [
+      isSHowTableResult,
       commonUserData,
+      tableResult,
       successText,
       isPending,
       result,

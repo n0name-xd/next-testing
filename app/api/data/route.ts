@@ -1,21 +1,20 @@
 import db from "@/shared/libs/bd";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { userData, answers, surveyResults, extraDictionary, test } = body;
 
     const stmt = db.prepare(`
-        INSERT INTO userData (surname, name, patronymic, gender, dateOfBirth, answers, surveyResults, extraDictionary, test)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO userData (userId, gender, answers, surveyResults, extraDictionary, test)
+        VALUES (?, ?, ?, ?, ?, ?)
     `);
 
     const info = stmt.run(
-      userData.surname,
-      userData.name,
-      userData.patronymic,
+      `${userData.firstLetterName}${userData.lastNumbersOfPhone}`,
       userData.gender,
-      userData.dateOfBirth,
       JSON.stringify(answers ?? {}),
       JSON.stringify(surveyResults ?? {}),
       JSON.stringify(extraDictionary ?? {}),

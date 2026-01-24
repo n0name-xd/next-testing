@@ -52,11 +52,8 @@ export interface IResult {
 
 export interface IUserData {
   gender?: "male" | "female";
-  name?: string | null;
-  surname?: string | null;
-  patronymic?: string | null;
-  dateOfBirth?: string | null;
+  firstLetterName?: string | null;
+  lastNumbersOfPhone?: string | null;
   isCompleteData: boolean;
   error: boolean;
-  isConfirmPolitico: boolean;
 }

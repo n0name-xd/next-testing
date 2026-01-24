@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 import { IUserData } from "../types";
-import Link from "next/link";
 
 interface IUserDataProps {
   commonUserData: IUserData;
@@ -15,47 +14,49 @@ export const UserData: React.FC<IUserDataProps> = ({
   setCommonUserData,
   applyUserData,
 }) => {
+  const handleFirstLetterName = (value: string) => {
+    const regex = /^[a-zA-Zа-яА-ЯёЁ]+$/;
+    if ((value.length > 1 || !regex.test(value)) && value.length) return;
+
+    setCommonUserData((p) => ({ ...p, firstLetterName: value }));
+  };
+
+  const handleLastNumbersOfPhone = (value: string) => {
+    const regex = /^\d+$/;
+
+    if ((value.length > 4 || !regex.test(value)) && value.length) return;
+
+    setCommonUserData((p) => ({ ...p, lastNumbersOfPhone: value }));
+  };
+
   return (
     <div className={className}>
       <h2 className="text-3xl font-semibold">Заполните данные о себе:</h2>
       <div className="mt-4">
-        <label className="text-2xl font-semibold cursor-pointer">Фамилия</label>
+        <label className="text-2xl font-semibold cursor-pointer">
+          Первая буква имени
+        </label>
         <br />
         <input
           type="text"
-          value={commonUserData.surname ?? ""}
-          onChange={(el) =>
-            setCommonUserData((p) => ({ ...p, surname: el.target.value }))
-          }
-          className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none mt-2"
-        />
-      </div>
-      <div className="mt-4">
-        <label className="text-2xl font-semibold cursor-pointer">Имя</label>
-        <br />
-        <input
-          type="text"
-          value={commonUserData.name ?? ""}
-          onChange={(el) =>
-            setCommonUserData((p) => ({ ...p, name: el.target.value }))
-          }
+          value={commonUserData.firstLetterName ?? ""}
+          onChange={(el) => handleFirstLetterName(el.target.value)}
           className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none mt-2"
         />
       </div>
       <div className="mt-4">
         <label className="text-2xl font-semibold cursor-pointer">
-          Отчество
+          Последние 4 цифры вашего номера телефона
         </label>
         <br />
         <input
           type="text"
-          value={commonUserData.patronymic ?? ""}
-          onChange={(el) =>
-            setCommonUserData((p) => ({ ...p, patronymic: el.target.value }))
-          }
+          value={commonUserData.lastNumbersOfPhone?.toString() ?? ""}
+          onChange={(el) => handleLastNumbersOfPhone(el.target.value)}
           className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none mt-2"
         />
       </div>
+
       <div className="mt-4">
         <label className="text-2xl font-semibold cursor-pointer">Пол</label>
         <div className="">
@@ -97,40 +98,7 @@ export const UserData: React.FC<IUserDataProps> = ({
           </div>
         </div>
       </div>
-      <div className="mt-4">
-        <label className="text-2xl font-semibold cursor-pointer">
-          Дата рождения
-        </label>
-        <br />
-        <input
-          max={new Date().toISOString().split("T")[0]}
-          type="date"
-          value={commonUserData.dateOfBirth ?? ""}
-          onChange={(el) => {
-            setCommonUserData((p) => ({ ...p, dateOfBirth: el.target.value }));
-          }}
-          className="border-2 border-gray-400 rounded-xl px-2 py-1 focus:border-[#FE9A00] outline-none mt-2 text-xl"
-        />
-      </div>
-      <div className="mt-4 flex items-center gap-4">
-        <input
-          type="checkbox"
-          className="w-5 h-5"
-          checked={commonUserData.isConfirmPolitico}
-          onChange={(e) =>
-            setCommonUserData((p) => ({
-              ...p,
-              isConfirmPolitico: e.target.checked,
-            }))
-          }
-        />
-        Продолжая, вы подтверждаете согласие на{" "}
-        <Link href={"/politico"} className="text-blue-600">
-          {" "}
-          обработку персональных данных
-        </Link>
-        .
-      </div>
+
       <button
         onClick={applyUserData}
         className="border-2 border-amber-500 rounded-3xl px-6 py-1 mt-6 cursor-pointer text-2xl hover:bg-[#FE9A00]"

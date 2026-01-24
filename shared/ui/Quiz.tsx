@@ -18,6 +18,8 @@ interface IQuizProps {
   applyUserData: () => void;
   setCommonUserData: Dispatch<SetStateAction<IUserData>>;
   successText: string;
+  isSHowTableResult: boolean
+  tableResult: (string | undefined)[]
 }
 
 export const Quiz: React.FC<IQuizProps> = ({
@@ -26,6 +28,8 @@ export const Quiz: React.FC<IQuizProps> = ({
   result,
   value,
   quiz,
+  isSHowTableResult,
+  tableResult,
   successText,
   setChecked,
   applyData,
@@ -51,6 +55,8 @@ export const Quiz: React.FC<IQuizProps> = ({
           createPdf={createPdf}
           isLoading={isLoading}
           successText={successText}
+             isSHowTableResult={isSHowTableResult}
+      tableResult={tableResult}
         />
       ) : (
         <>
