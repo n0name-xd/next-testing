@@ -47,3 +47,4 @@ next-env.d.ts
 /certification
 /scripts/*.sqlite
 database_export.xlsx
+/storage

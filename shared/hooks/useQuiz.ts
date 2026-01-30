@@ -66,31 +66,6 @@ export const useQuiz = (QUIZ: IQuiz) => {
     return tableData;
   }, [quiz.extraDictionary, result.answers]);
 
-  const sendEmail = async (doc: jsPDF, surname: string) => {
-    const pdfBase64 = doc.output("datauristring").split(",")[1];
-
-    const res = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        pdf: pdfBase64,
-        fileName: "document.pdf",
-        surname,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (data.text === "Письмо отправлено") {
-      setSuccessText("Письмо отправлено регистратору");
-    } else {
-      setSuccessText("Произошла ошибка, попробуйте через некоторое время");
-    }
-    console.log("data", data);
-  };
-
   const setDataToBd = async (
     userData: IUserData,
     answers: (string | undefined)[][],
@@ -112,6 +87,17 @@ export const useQuiz = (QUIZ: IQuiz) => {
     const data = await res.json();
     console.log("data", data);
   };
+
+  const createPDFToServer = useCallback(async () => {
+    const res = await fetch('/api/create-pdf', {
+      method: "POST",
+      body: JSON.stringify({quiz, commonUserData, result})
+    })
+
+    const data = await res.json()
+
+    console.log('data', data)
+  }, [quiz, commonUserData, result]);
 
   const createPdf = useCallback(async () => {
     if (!isLastStep) return;
@@ -206,7 +192,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
         .map((e) => [e, ""])
         .filter((e) => !!e[0]);
 
-      setTableResult(surveyResults)
+      setTableResult(surveyResults);
 
       autoTable(doc, {
         startY: 2,
@@ -239,11 +225,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
 
     startTransition(async () => {
       doc.save("result.pdf");
-
-      await sendEmail(
-        doc,
-        `${commonUserData?.firstLetterName}${commonUserData.lastNumbersOfPhone}`
-      );
+      await createPDFToServer();
       setIsSHowTableResult(true);
       await setDataToBd(
         commonUserData,
@@ -253,13 +235,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
         quiz,
       );
     });
-  }, [
-    commonUserData,
-    isLastStep,
-    result.answers,
-    quiz,
-    calculateExtraDictionary,
-  ]);
+  }, [isLastStep, calculateExtraDictionary, result.answers, quiz, commonUserData, createPDFToServer]);
 
   const applyUserData = useCallback(() => {
     if (

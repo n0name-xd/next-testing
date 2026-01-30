@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: nextjs_16_app
+    ports:
+      - "3000:3000"
     expose:
       - "3000"
     restart: always
@@ -19,6 +21,7 @@ services:
       - DATABASE_PATH=${DATABASE_PATH}
     volumes:
       - ./entities/bd:/app/entities/bd
+      - ./storage:/app/storage
     networks:
       - app-network
 

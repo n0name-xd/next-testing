@@ -7,8 +7,8 @@ export const routesList = [
     path: "/testThree",
     name: "Анкета для граждан в возрасте старше 65 лет",
   },
-  // {
-  //   path: "/testTwo",
-  //   name: "test",
-  // },
+  {
+    path: "/testTwo",
+    name: "test",
+  },
 ];

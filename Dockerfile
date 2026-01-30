@@ -21,6 +21,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 RUN mkdir -p /app/entities/bd && chown -R nextjs:nodejs /app/entities/bd
+RUN mkdir -p /app/storage && chown -R nextjs:nodejs /app/storage
 
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
