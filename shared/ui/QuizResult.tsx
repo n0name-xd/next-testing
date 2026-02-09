@@ -25,7 +25,7 @@ export const QuizResult: React.FC<IQuizResultProps> = ({
 
       <ApplyButton
         apply={createPdf}
-        text="Создать pdf"
+        text="Отправить результаты"
         isLoading={isLoading}
         disabled={isLoading || successText === "Письмо отправлено регистратору"}
       />

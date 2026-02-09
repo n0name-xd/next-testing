@@ -12,7 +12,7 @@ export async function POST(request: Request) {
         VALUES (?, ?, ?, ?, ?, ?)
     `);
 
-    const info = stmt.run(
+    stmt.run(
       `${userData.firstLetterName}${userData.lastNumbersOfPhone}`,
       userData.gender,
       JSON.stringify(answers ?? {}),
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       test,
     );
 
-    return Response.json({ text: info });
+    return Response.json({ text: "Ok" });
   } catch (error) {
     console.error("Ошибка отправки:", error);
     return Response.json({ data: error, text: "2" });
