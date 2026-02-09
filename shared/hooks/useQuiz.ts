@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState, useTransition } from "react";
 import type { IQuiz, IResult, IUserData, IVariant } from "@/shared/types";
 import { jsPDF } from "jspdf";
-// import { autoTable } from "jspdf-autotable";
-// import { splitStringBy67, removeDuplicates } from "@/shared/hooks/helpers";
+import { autoTable } from "jspdf-autotable";
+import { splitStringBy67, removeDuplicates } from "@/shared/hooks/helpers";
 
 const doc = new jsPDF();
 doc?.addFont("/fonts/Roboto-Black.ttf", "Roboto", "normal");
@@ -88,7 +88,6 @@ export const useQuiz = (QUIZ: IQuiz) => {
     } else {
       setSuccessText("Произошла ошибка, попробуйте через некоторое время");
     }
-    console.log("data", data);
   };
 
   const setDataToBd = async (
@@ -109,8 +108,7 @@ export const useQuiz = (QUIZ: IQuiz) => {
       }),
     });
 
-    const data = await res.json();
-    console.log("data", data);
+    await res.json();
   };
 
   const createPdf = useCallback(async () => {
@@ -144,37 +142,37 @@ export const useQuiz = (QUIZ: IQuiz) => {
       surveyResults.push(q(answersIds, commonUserData));
     });
 
-    // const pageWidth = 210;
+    const pageWidth = 210;
 
-    // doc.setFontSize(10);
-    // doc.text("Название теста:", pageWidth / 2, 10, { align: "center" });
-    // doc.setFontSize(16);
+    doc.setFontSize(10);
+    doc.text("Название теста:", pageWidth / 2, 10, { align: "center" });
+    doc.setFontSize(16);
 
-    // let startY = 2;
+    let startY = 2;
 
-    // if (quiz.title.length > 67) {
-    //   splitStringBy67(quiz.title).forEach((e) => {
-    //     doc.text(e, pageWidth / 2, startY + 18, {
-    //       align: "center",
-    //     });
-    //     startY += 6;
-    //   });
-    // } else {
-    //   doc.text(quiz.title, pageWidth / 2, startY + 18, { align: "center" });
-    // }
+    if (quiz.title.length > 67) {
+      splitStringBy67(quiz.title).forEach((e) => {
+        doc.text(e, pageWidth / 2, startY + 18, {
+          align: "center",
+        });
+        startY += 6;
+      });
+    } else {
+      doc.text(quiz.title, pageWidth / 2, startY + 18, { align: "center" });
+    }
 
-    // doc.setFontSize(10);
-    // doc.text(
-    //   `Идентификатор: ${commonUserData?.firstLetterName ?? ""}${commonUserData.lastNumbersOfPhone?.toString()}`,
-    //   2,
-    //   startY + 28,
-    // );
+    doc.setFontSize(10);
+    doc.text(
+      `Идентификатор: ${commonUserData?.firstLetterName ?? ""}${commonUserData.lastNumbersOfPhone?.toString()}`,
+      2,
+      startY + 28,
+    );
 
-    // doc.text(
-    //   `Пол: ${commonUserData.gender === "male" ? "мужской" : "женский"}`,
-    //   2,
-    //   startY + 34,
-    // );
+    doc.text(
+      `Пол: ${commonUserData.gender === "male" ? "мужской" : "женский"}`,
+      2,
+      startY + 34,
+    );
 
     const answersTable = result.answers.map((elem) => {
       const question = quiz.questions.find((e) =>
@@ -187,55 +185,55 @@ export const useQuiz = (QUIZ: IQuiz) => {
       ];
     });
 
-    // autoTable(doc, {
-    //   startY: startY + 43,
-    //   tableWidth: pageWidth - 4,
-    //   head: [["Вопросы", "Ответы"]],
-    //   body: answersTable as [][],
-    //   styles: {
-    //     font: "Roboto",
-    //     fontStyle: "normal",
-    //   },
-    //   margin: { left: 2 },
-    // });
+    autoTable(doc, {
+      startY: startY + 43,
+      tableWidth: pageWidth - 4,
+      head: [["Вопросы", "Ответы"]],
+      body: answersTable as [][],
+      styles: {
+        font: "Roboto",
+        fontStyle: "normal",
+      },
+      margin: { left: 2 },
+    });
 
     if (surveyResults.length) {
-      //   doc.addPage();
+      doc.addPage();
 
-      //   const tableData = removeDuplicates(surveyResults)
-      //     .map((e) => [e, ""])
-      //     .filter((e) => !!e[0]);
+      const tableData = removeDuplicates(surveyResults)
+        .map((e) => [e, ""])
+        .filter((e) => !!e[0]);
 
       setTableResult(surveyResults);
 
-      //   autoTable(doc, {
-      //     startY: 2,
-      //     tableWidth: pageWidth - 4,
-      //     head: [["Результаты анкетирования", ""]],
-      //     body: tableData as [][],
-      //     styles: {
-      //       font: "Roboto",
-      //       fontStyle: "normal",
-      //     },
-      //     margin: { left: 2 },
-      //   });
+      autoTable(doc, {
+        startY: 2,
+        tableWidth: pageWidth - 4,
+        head: [["Результаты анкетирования", ""]],
+        body: tableData as [][],
+        styles: {
+          font: "Roboto",
+          fontStyle: "normal",
+        },
+        margin: { left: 2 },
+      });
     }
 
-    // if (extraDictionary.length) {
-    //   doc.addPage();
-    //   const tableData = removeDuplicates(extraDictionary).map((e) => [e, ""]);
-    //   autoTable(doc, {
-    //     startY: 2,
-    //     tableWidth: pageWidth - 4,
-    //     head: [["Дополнительный перечень обследования", ""]],
-    //     body: tableData as [][],
-    //     styles: {
-    //       font: "Roboto",
-    //       fontStyle: "normal",
-    //     },
-    //     margin: { left: 2 },
-    //   });
-    // }
+    if (extraDictionary.length) {
+      doc.addPage();
+      const tableData = removeDuplicates(extraDictionary).map((e) => [e, ""]);
+      autoTable(doc, {
+        startY: 2,
+        tableWidth: pageWidth - 4,
+        head: [["Дополнительный перечень обследования", ""]],
+        body: tableData as [][],
+        styles: {
+          font: "Roboto",
+          fontStyle: "normal",
+        },
+        margin: { left: 2 },
+      });
+    }
 
     startTransition(async () => {
       // doc.save("result.pdf");
