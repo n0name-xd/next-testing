@@ -678,6 +678,7 @@ const QUIZ: IQuiz = {
           text: "Нет",
           value: "0",
           variantId: "71",
+          plusStep: 1,
         },
       ],
     },
@@ -1061,6 +1062,16 @@ const QUIZ: IQuiz = {
         {
           variantId: "3",
           result: "Принимает гипотензивные препараты",
+          extraDescription: "",
+        },
+      ],
+    },
+    {
+      questionId: "3",
+      variants: [
+        {
+          variantId: "5",
+          result: "Вероятность сахарного диабета",
           extraDescription: "",
         },
       ],
