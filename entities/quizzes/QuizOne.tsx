@@ -307,6 +307,25 @@ const QUIZ: IQuiz = {
     },
     {
       question:
+        "Принимаете ли вы варфарин?",
+      questionId: "42",
+      variants: [
+        {
+          inputType: "checkbox",
+          text: "Да",
+          value: "1",
+          variantId: "90",
+        },
+        {
+          inputType: "checkbox",
+          text: "Нет",
+          value: "0",
+          variantId: "91",
+        },
+      ],
+    },
+    {
+      question:
         "Был ли инфаркт миокарда или инсульт у Ваших близких родственников в молодом или среднем возрасте (до 65 лет у матери или родных сестер или до 55 лет у отца или родных братьев)?",
       questionId: "17", //в4
       variants: [
@@ -891,26 +910,7 @@ const QUIZ: IQuiz = {
           variantId: "87",
         },
       ],
-    },
-    {
-      question:
-        "Принимаете ли вы варфарин?",
-      questionId: "42",
-      variants: [
-        {
-          inputType: "checkbox",
-          text: "Да",
-          value: "1",
-          variantId: "90",
-        },
-        {
-          inputType: "checkbox",
-          text: "Нет",
-          value: "0",
-          variantId: "91",
-        },
-      ],
-    },
+    },    
     {
       question:
         "Есть ли у Вас другие жалобы на свое здоровье, не вошедшие в настоящую анкету и которые Вы бы хотели сообщить врачу (фельдшеру)?",
@@ -1103,7 +1103,7 @@ const QUIZ: IQuiz = {
           "Врач-терапевт",
         ],
       },
-    },
+    },    
     {
       questions: {
         variantsIds: ["32"], //инфаркт миокарда или инсульт у Ваших близких родственников в молодом или среднем возрасте Да
