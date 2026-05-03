@@ -306,8 +306,7 @@ const QUIZ: IQuiz = {
       ],
     },
     {
-      question:
-        "Принимаете ли вы варфарин?",
+      question: "Принимаете ли вы варфарин?",
       questionId: "42",
       variants: [
         {
@@ -910,7 +909,7 @@ const QUIZ: IQuiz = {
           variantId: "87",
         },
       ],
-    },    
+    },
     {
       question:
         "Есть ли у Вас другие жалобы на свое здоровье, не вошедшие в настоящую анкету и которые Вы бы хотели сообщить врачу (фельдшеру)?",
@@ -970,7 +969,7 @@ const QUIZ: IQuiz = {
         result: "!!!!!!",
         extraDescription: [
           "Холестерин-липопротеины низкой плотности (ХС-ЛПНП)",
-          "Врач-невролог"
+          "Врач-невролог",
         ],
       },
     },
@@ -1021,8 +1020,7 @@ const QUIZ: IQuiz = {
         variantsIds: ["17"], //Заболевания желудка Да
         condition: 1,
         result: "!!!!!!",
-        extraDescription: 
-        [
+        extraDescription: [
           "Эзофагогастродуоденоскопия (ЭГДС)",
           "Врач-гастроэнтеролог",
         ],
@@ -1067,9 +1065,7 @@ const QUIZ: IQuiz = {
         variantsIds: ["26"], // Принимает препараты для снижения уровня холестерина Да
         condition: 1,
         result: "!!!!!!",
-        extraDescription: [
-          "Трансаминазы (АЛАТ, АСАТ)",
-        ],
+        extraDescription: ["Трансаминазы (АЛАТ, АСАТ)"],
       },
     },
     {
@@ -1084,7 +1080,7 @@ const QUIZ: IQuiz = {
           "Триглицериды (ТГ)",
           "Холестерин-липопротеины высокой плотности (ХС-ЛПВП)",
           "Врач-кардиолог",
-          "Врач-терапевт"
+          "Врач-терапевт",
         ],
       },
     },
@@ -1103,7 +1099,7 @@ const QUIZ: IQuiz = {
           "Врач-терапевт",
         ],
       },
-    },    
+    },
     {
       questions: {
         variantsIds: ["32"], //инфаркт миокарда или инсульт у Ваших близких родственников в молодом или среднем возрасте Да
@@ -1223,47 +1219,39 @@ const QUIZ: IQuiz = {
     },
     {
       questions: {
-        variantsIds: ["52","56"], // 
+        variantsIds: ["52", "56"], //
         condition: 2,
         result: "!!!!!!",
-        extraDescription: [
-          "Эзофагогастродуоденоскопия (ЭГДС)",
-        ],
+        extraDescription: ["Эзофагогастродуоденоскопия (ЭГДС)"],
       },
     },
     {
       questions: {
-        variantsIds: ["54","56"], // 
+        variantsIds: ["54", "56"], //
         condition: 2,
         result: "!!!!!!",
-        extraDescription: [
-          "Эзофагогастродуоденоскопия (ЭГДС)",
-        ],
+        extraDescription: ["Эзофагогастродуоденоскопия (ЭГДС)"],
       },
     },
     {
       questions: {
-        variantsIds: ["56","58"], // 
+        variantsIds: ["56", "58"], //
         condition: 2,
         result: "!!!!!!",
-        extraDescription: [
-          "Врач-хирург или врач-колопроктолог",
-        ],
+        extraDescription: ["Врач-хирург или врач-колопроктолог"],
       },
     },
     {
       questions: {
-        variantsIds: ["56","60"], // 
+        variantsIds: ["56", "60"], //
         condition: 2,
         result: "!!!!!!",
-        extraDescription: [
-          "Врач-хирург или врач-колопроктолог",
-        ],
+        extraDescription: ["Врач-хирург или врач-колопроктолог"],
       },
     },
-     {
+    {
       questions: {
-        variantsIds: ["62","34"], // 
+        variantsIds: ["62", "34"], //
         condition: 2,
         result: "!!!!!!",
         extraDescription: [
@@ -1273,7 +1261,7 @@ const QUIZ: IQuiz = {
     },
     {
       questions: {
-        variantsIds: ["5","36","38"], // Несколько ДА
+        variantsIds: ["5", "36", "38"], // Несколько ДА
         condition: 3,
         result: "!!!!!!",
         extraDescription: [
@@ -1285,12 +1273,10 @@ const QUIZ: IQuiz = {
     },
     {
       questions: {
-        variantsIds: ["1","24"], // несколько ДА
+        variantsIds: ["1", "24"], // несколько ДА
         condition: 2,
         result: "!!!!!!",
-        extraDescription: [
-          "УЗИ брахиоцефальных артерий",
-        ],
+        extraDescription: ["УЗИ брахиоцефальных артерий"],
       },
     },
     {
@@ -1298,9 +1284,7 @@ const QUIZ: IQuiz = {
         variantsIds: ["90"],
         condition: 1,
         result: "",
-        extraDescription: [
-          "Протромбиновое время (МНО)",
-        ],
+        extraDescription: ["Протромбиновое время (МНО)"],
       },
     },
   ],
