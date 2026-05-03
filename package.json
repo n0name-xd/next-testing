@@ -12,12 +12,15 @@
   "dependencies": {
     "better-sqlite3": "^12.6.2",
     "dayjs": "^1.11.19",
+    "exceljs": "^4.4.0",
     "jspdf": "^4.0.0",
     "jspdf-autotable": "^5.0.7",
     "next": "16.1.1",
     "nodemailer": "^7.0.12",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
